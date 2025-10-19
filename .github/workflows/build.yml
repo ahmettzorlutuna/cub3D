@@ -1,0 +1,37 @@
+name: Build & Verify cub3D
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Reponun içeriğini al
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Docker BuildKit hızlı mod
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # 3️⃣ İmajı build et
+      - name: Build Docker image
+        run: |
+          docker build -t cub3d-test .
+
+      # 4️⃣ cub3D derlemesini test et
+      - name: Verify cub3D binary
+        run: |
+          # Container'ı geçici olarak başlat ve make çalıştır
+          docker run --rm -v $PWD:/app cub3d-test bash -lc "
+            cd /app/mandatory || cd /app
+            make re || exit 1
+            if [ ! -f cub3D ]; then
+              echo '❌ cub3D binary not found!'
+              exit 1
+            fi
+            echo '✅ cub3D binary created successfully!'
+          "
