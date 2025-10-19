@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: azorlutu <azorlutu@student.42istanbul      +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/12 21:25:23 by azorlutu          #+#    #+#              #
-#    Updated: 2025/10/18 00:43:00 by azorlutu         ###   ########.fr        #
+#    Updated: 2025/10/20 01:07:48 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ MLX = $(MLX_PATH)libmlx.a
 
 # --- KAYNAK DOSYALARI ---
 SRC = main.c \
-		parser/parser_utils.c
+		parser/parser_utils.c \
+		utils/init_game.c
 # Proje büyüdükçe buraya ekleyeceksin:
 # SRC = main.c parser/parser.c ...
 
