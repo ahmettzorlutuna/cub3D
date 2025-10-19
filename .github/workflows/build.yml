@@ -33,7 +33,7 @@ jobs:
         run: |
           # Container'ı geçici olarak başlat ve make çalıştır
           docker run --rm -v $PWD:/app cub3d-test bash -lc "
-            cd /app/mandatory || cd /app
+            cd /app
             make re || exit 1
             if [ ! -f cub3D ]; then
               echo '❌ cub3D binary not found!'
