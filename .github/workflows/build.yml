@@ -9,6 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Log in to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: eminekibar
+          password: dckr_pat_WHTCg681waepmU40QnsUUf6ZPkU
+          
       # 1️⃣ Reponun içeriğini al
       - name: Checkout repository
         uses: actions/checkout@v4
