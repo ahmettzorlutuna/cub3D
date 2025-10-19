@@ -1,6 +1,14 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+#include "../lib/libft/libft.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/time.h>
+
 typedef struct s_vec2
 {
     double	x;
@@ -34,8 +42,8 @@ typedef struct s_map
 	char	*south_texture_path;
 	char	*west_texture_path;
 	char	*east_texture_path;
-	int		*floor_color;
-	int		*ceiling_color;
+	int		floor_color;
+	int		ceiling_color;
 }	t_map;
 
 typedef struct s_game
@@ -44,5 +52,10 @@ typedef struct s_game
 	t_player	player;
 	t_map		map;
 }	t_game;
+
+/**
+ * PARSER
+ */
+void    validate_arguments(int argc, char **argv);
 
 # endif
