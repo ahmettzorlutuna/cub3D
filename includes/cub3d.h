@@ -53,6 +53,7 @@ typedef struct s_game
 	t_map		map;
 }	t_game;
 
+void init_game(t_game *game);
 /**
  * PARSER
  */
