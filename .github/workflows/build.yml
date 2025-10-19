@@ -12,6 +12,8 @@ jobs:
       # 1) Kodu al
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       # 2) (Önemli) MLX klasörünü yoksa indir
       - name: Ensure MiniLibX is present
