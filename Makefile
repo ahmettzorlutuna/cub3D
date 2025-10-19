@@ -30,7 +30,8 @@ MLX_PATH    = $(LIB_DIR)minilibx-linux/
 MLX = $(MLX_PATH)libmlx.a
 
 # --- KAYNAK DOSYALARI ---
-SRC = main.c
+SRC = main.c \
+		parser/parser_utils.c
 # Proje büyüdükçe buraya ekleyeceksin:
 # SRC = main.c parser/parser.c ...
 
