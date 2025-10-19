@@ -1,0 +1,58 @@
+name: Build & Verify cub3D
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      # 1) Kodu al
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2) (Önemli) MLX klasörünü yoksa indir
+      - name: Ensure MiniLibX is present
+        run: |
+          mkdir -p lib
+          if [ ! -d lib/minilibx-linux ]; then
+            git clone --depth=1 https://github.com/42Paris/minilibx-linux.git lib/minilibx-linux
+          fi
+
+      # 3) Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # 4) Docker imajını build et (Dockerfile’ındaki paketler yeterli olmalı)
+      - name: Build Docker image
+        run: docker build -t cub3d-test .
+
+      # 5) Container içinde make ve binary kontrolü
+      - name: Verify cub3D binary
+        run: |
+          docker run --rm -v "$GITHUB_WORKSPACE":/app cub3d-test bash -lc '
+            set -e
+            cd /app
+            make all
+            if   [ -f cub3d ]; then BIN=cub3d
+            elif [ -f cub3D ]; then BIN=cub3D
+            else
+              echo "❌ cub3D binary not found in /app"
+              ls -la
+              exit 1
+            fi
+            echo "✅ $BIN built successfully"
+          '
+
+      # 6) (opsiyonel) artefact yükle
+      - name: Upload cub3D artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cub3d-linux
+          path: |
+            cub3d
+            cub3D
+          if-no-files-found: ignore

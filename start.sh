@@ -20,7 +20,7 @@ echo "LS /app:"
 ls -l
 echo "============"
 
-# Windows bind-mount'ta exec biti düşebiliyor; garantiye al
+#  Windows bind-mount'ta exec biti düşebiliyor; garantiye al
 if [ -f "./cub3D" ] && [ ! -x "./cub3D" ]; then
   chmod +x ./cub3D || true
 fi
