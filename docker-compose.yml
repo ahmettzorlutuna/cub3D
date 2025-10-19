@@ -1,0 +1,21 @@
+services:
+  cub3d-novnc:
+    build: .
+    image: cub3d-novnc:latest
+
+    # noVNC portu: tarayıcıdan http://localhost:6080 ile girersin
+    # istersen 3428 yapabilirsin (dışarı:3428 → içeride:6080)
+    ports:
+      - "6080:6080"
+
+    # Oyun haritasının yolu — mutlak olmalı
+    environment:
+      - CUB_FILE=/app/maps/valid/map_valid.cub
+
+    # Proje klasörünü konteynere bağla (her değişiklik yansır)
+    volumes:
+      - ./:/app
+
+    # Container kapanmasın, start.sh ekranı açık tutsun
+    tty: true
+    stdin_open: true
