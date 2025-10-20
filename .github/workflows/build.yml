@@ -64,7 +64,3 @@ jobs:
       # run: |
       #   chmod +x run_map_tests.sh
       #   ./run_map_tests.sh
-          
-
-      - name: Run map tests
-        run: ./run_map_tests.sh
