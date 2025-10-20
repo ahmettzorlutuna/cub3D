@@ -58,3 +58,6 @@ jobs:
             cub3d
             cub3D
           if-no-files-found: ignore
+
+      - name: Run map tests
+        run: ./run_map_tests.sh
