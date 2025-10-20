@@ -5,6 +5,8 @@ BIN=./cub3D
 OK=0
 FAIL=0
 
+mkdir -p logs
+
 # Beklenen geçerli (başarılı) haritalar
 VALID_MAPS=(maps/valid/*.cub)
 
