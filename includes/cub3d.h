@@ -2,6 +2,7 @@
 # define CUB3D_H
 
 #include "../lib/libft/libft.h"
+#include "./srcs/parser/gnl/get_next_line.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -58,5 +59,10 @@ void init_game(t_game *game);
  * PARSER
  */
 void    validate_arguments(int argc, char **argv);
+void	parse_mapfile(char *file_name, t_game *game);
+/**
+ * ERROR
+ */
+void	print_error_and_exit(char *message);
 
 # endif
