@@ -2,7 +2,7 @@
 # define CUB3D_H
 
 #include "../lib/libft/libft.h"
-#include "./srcs/parser/gnl/get_next_line.h"
+#include "../srcs/parser/gnl/get_next_line.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
