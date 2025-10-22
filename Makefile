@@ -32,7 +32,11 @@ MLX = $(MLX_PATH)libmlx.a
 # --- KAYNAK DOSYALARI ---
 SRC = main.c \
 		parser/parser_utils.c \
-		utils/init_game.c
+		parser/parser.c \
+		parser/gnl/get_next_line.c \
+		parser/gnl/get_next_line_utils.c \
+		utils/init_game.c \
+		utils/error.c \
 # Proje büyüdükçe buraya ekleyeceksin:
 # SRC = main.c parser/parser.c ...
 
