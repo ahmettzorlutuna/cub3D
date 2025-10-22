@@ -45,6 +45,7 @@ typedef struct s_map
 	char	*east_texture_path;
 	int		floor_color;
 	int		ceiling_color;
+	t_list	*line_list;
 }	t_map;
 
 typedef struct s_game
@@ -60,6 +61,10 @@ void init_game(t_game *game);
  */
 void    validate_arguments(int argc, char **argv);
 void	parse_mapfile(char *file_name, t_game *game);
+void	parse_color(t_game *game, int *target_color, char **tokens);
+int		is_digit_string(char *str);
+void	free_string_array(char **array);
+char	*create_map_line_copy(char *line);
 /**
  * ERROR
  */
