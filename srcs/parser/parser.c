@@ -14,6 +14,7 @@
 
 void *parse_texture(t_game *game, char **target_path, char **tokens)
 {
+    (void)game;
     int texture_path_len;
 
     if(tokens[1] == NULL || tokens[2] != NULL)
@@ -23,6 +24,7 @@ void *parse_texture(t_game *game, char **target_path, char **tokens)
     texture_path_len = ft_strlen(tokens[1]);
     if(texture_path_len < 5 || ft_strncmp(&tokens[1][texture_path_len - 4], ".xpm", 5) != 0)
         print_error_and_exit("Texture path must ends with .xpm");
+    return (0);
 }
 
 void parse_mapfile(char *file_name, t_game *game)
@@ -68,11 +70,11 @@ void parse_mapfile(char *file_name, t_game *game)
         }
         else if (ft_strncmp(tokens[0], "F", 2) == 0)
         {
-            parse_color(game, &game->map.floor_color, tokens);
+            // parse_color(game, &game->map.floor_color, tokens);
         }
         else if (ft_strncmp(tokens[0], "C", 2) == 0)
         {
-            parse_color(game, &game->map.ceiling_color, tokens);
+            // parse_color(game, &game->map.ceiling_color, tokens);
         }
         else
         {
