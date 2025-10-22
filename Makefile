@@ -37,6 +37,7 @@ SRC = main.c \
 		parser/gnl/get_next_line_utils.c \
 		utils/init_game.c \
 		utils/error.c \
+		utils/memory.c
 # Proje büyüdükçe buraya ekleyeceksin:
 # SRC = main.c parser/parser.c ...
 
