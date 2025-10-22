@@ -12,6 +12,21 @@
 
 #include "../includes/cub3d.h"
 
+char *create_map_line_copy(char *line)
+{
+    size_t  len;
+    size_t  copy_len;
+
+    if (line == NULL)
+        return (NULL);
+    len = ft_strlen(line);
+    if (len > 0 && line[len - 1] == '\n')
+        copy_len = len - 1;
+    else
+        copy_len = len;
+    return (ft_substr(line, 0, copy_len));
+}
+
 void    validate_arguments(int argc, char **argv)
 {
     int len;
@@ -28,4 +43,22 @@ void    validate_arguments(int argc, char **argv)
         ft_putstr_fd("The map file name must have the .cub extension.\n",2);
 		exit(1);
 	}
+}
+
+int is_digit_string(char *str)
+{
+    int i;
+    i = 0;
+
+    if (str == NULL)
+        return (0);
+    if (str[0] == '\0')
+        return (0);
+    while (str[i] != '\0')
+    {
+        if (!ft_isdigit(str[i]))
+            return (0);
+        i++;
+    }
+    return (1);
 }
