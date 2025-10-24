@@ -66,7 +66,7 @@ int		is_digit_string(char *str);
 void	free_string_array(char **array);
 char	*create_map_line_copy(char *line);
 void	handle_map_line(t_game *game, char *line, char **tokens, char *trimmed_line);
-void	finalize_map_grid(t_map *map);
+void	finalize_map_grid(t_game *game);
 /**
  * ERROR
  */
