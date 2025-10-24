@@ -60,11 +60,13 @@ void init_game(t_game *game);
  * PARSER
  */
 void    validate_arguments(int argc, char **argv);
-void	parse_mapfile(char *file_name, t_game *game);
+void	parse_map_lines(char *file_name, t_game *game);
 void	parse_color(t_game *game, int *target_color, char **tokens);
 int		is_digit_string(char *str);
 void	free_string_array(char **array);
 char	*create_map_line_copy(char *line);
+void	handle_map_line(t_game *game, char *line, char **tokens, char *trimmed_line);
+void	finalize_map_grid(t_map *map);
 /**
  * ERROR
  */
