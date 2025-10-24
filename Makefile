@@ -35,6 +35,8 @@ SRC = main.c \
 		parser/parser.c \
 		parser/gnl/get_next_line.c \
 		parser/gnl/get_next_line_utils.c \
+		parser/handle_map_line.c \
+		parser/finalize_map.c \
 		utils/init_game.c \
 		utils/error.c \
 		utils/memory.c
