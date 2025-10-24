@@ -17,6 +17,8 @@ int main(int argc, char **argv)
 	t_game game;
 	validate_arguments(argc, argv);
 	init_game(&game);
-	parse_mapfile(argv[1], &game);
+	parse_map_lines(argv[1], &game);
+	finalize_map_grid(&game.map);
+	validate_map_content();
 	return (0);
 }
