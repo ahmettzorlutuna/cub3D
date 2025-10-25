@@ -16,10 +16,9 @@ void validate_map_content(t_game *game)
 {
 	int		x;
 	int		y;
-	int		player_x;
-	int		player_y;
 	int		player_count;
 	char	current_char;
+	char	**map_copy;
 
 	x = -1;
 	y = -1;
@@ -32,13 +31,14 @@ void validate_map_content(t_game *game)
 		while (game->map.grid[y][x] != '\0')
 		{
 			current_char = game->map.grid[y][x];
-			if(!ft_strchr("01NWSE", current_char))
+			if(!ft_strchr("01NWSE ", current_char))
 				print_error_and_exit("Invalid char found in the map");
-			if(!ft_strchr("NWSE",current_char))
+			if(ft_strchr("NWSE",current_char))
 			{
 				player_count++;
-				player_x = x;
-				player_y = y;
+				game->player.pos.x = (double)x + 0.5;
+				game->player.pos.y = (double)y + 0.5;
+				game->player.current_direction = current_char;
 			}
 			x++;
 		}
@@ -46,8 +46,15 @@ void validate_map_content(t_game *game)
 	}
 	if(player_count != 1)
 		print_error_and_exit("There should be 1 player on the map.");
-	game->player.pos.x = (double)player_x + 0.5;
-	game->player.pos.y = (double)player_y + 0.5;
+	map_copy = duplicate_grid(&game->map);
+	flood_fill(map_copy, game->map.height, (int)game->player.pos.x, (int)game->player.pos.y);
+	y = 0;
+	while (y < game->map.height)
+    {
+		printf("%s\n", map_copy[y]);
+        y++;
+    }
+	free_grid(map_copy);
 }
 
 void finalize_map_grid(t_map *map)

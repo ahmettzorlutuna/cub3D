@@ -32,6 +32,7 @@ typedef struct s_player
 	t_vec2	pos;
 	t_vec2	dir;
 	t_vec2	plane;
+	char	current_direction;
 }	t_player;
 
 typedef struct s_map
@@ -59,6 +60,7 @@ void init_game(t_game *game);
 /**
  * PARSER
  */
+
 void    validate_arguments(int argc, char **argv);
 void	parse_map_lines(char *file_name, t_game *game);
 void	parse_color(t_game *game, int *target_color, char **tokens);
@@ -66,7 +68,11 @@ int		is_digit_string(char *str);
 void	free_string_array(char **array);
 char	*create_map_line_copy(char *line);
 void	handle_map_line(t_game *game, char *line, char **tokens, char *trimmed_line);
-void	finalize_map_grid(t_game *game);
+void	finalize_map_grid(t_map *map);
+void	validate_map_content(t_game *game);
+char	**duplicate_grid(t_map *map);
+void	free_grid(char **grid);
+void    flood_fill(char **map_copy, int height, int x, int y);
 /**
  * ERROR
  */

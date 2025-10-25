@@ -12,6 +12,19 @@
 
 #include "../includes/cub3d.h"
 
+void free_grid(char **grid)
+{
+    int y = 0;
+    if (!grid)
+		return;
+    while (grid[y])
+    {
+        free(grid[y]);
+        y++;
+    }
+    free(grid);
+}
+
 char *create_map_line_copy(char *line)
 {
     size_t  len;

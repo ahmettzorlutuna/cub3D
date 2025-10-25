@@ -97,7 +97,6 @@ void parse_map_lines(char *file_name, t_game *game)
     while (line != NULL)
     {
         trimmed_line = ft_strtrim(line, " \t\n");
-        free(trimmed_line);
         if(trimmed_line[0] == '\0')
         {
             free(trimmed_line);
