@@ -80,7 +80,10 @@ static  void process_identifier(t_game *game, char *line, char **tokens, char *t
     else if (ft_strncmp(tokens[0], "C", 2) == 0)
         parse_color(game, &game->map.ceiling_color, tokens);
     else
+    {
+        game->map.is_map_started = 1;
         handle_map_line(game, line, tokens, trimmed_line);
+    }
 }
 
 void parse_map_lines(char *file_name, t_game *game)
@@ -99,6 +102,12 @@ void parse_map_lines(char *file_name, t_game *game)
         trimmed_line = ft_strtrim(line, " \t\n");
         if(trimmed_line[0] == '\0')
         {
+            if(game->map.is_map_started == 1)
+            {
+                free(trimmed_line);
+                line = get_next_line(fd);
+                print_error_and_exit("You cannot divide the map");
+            }
             free(trimmed_line);
             line = get_next_line(fd);
             continue;
