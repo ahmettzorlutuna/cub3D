@@ -99,15 +99,12 @@ void parse_map_lines(char *file_name, t_game *game)
     line = get_next_line(fd);
     while (line != NULL)
     {
-        trimmed_line = ft_strtrim(line, " \t\n");
+        if(game->map.is_map_started != 1)
+            trimmed_line = ft_strtrim(line, " \t\n");
+        if(game->map.is_map_started == 1)
+            trimmed_line = ft_strtrim(line, " \t");
         if(trimmed_line[0] == '\0')
         {
-            if(game->map.is_map_started == 1)
-            {
-                free(trimmed_line);
-                line = get_next_line(fd);
-                print_error_and_exit("You cannot divide the map");
-            }
             free(trimmed_line);
             line = get_next_line(fd);
             continue;
