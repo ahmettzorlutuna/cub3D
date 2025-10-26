@@ -14,7 +14,7 @@
 
 void print_error_and_exit(char *message)
 {
-    ft_putstr_fd("Error\n", 2);
+    ft_putstr_fd("Error..: ", 2);
     ft_putstr_fd(message, 2);
     ft_putstr_fd("\n", 2);
     exit(1);
