@@ -47,6 +47,7 @@ typedef struct s_map
 	int		floor_color;
 	int		ceiling_color;
 	t_list	*line_list;
+	int		is_map_started;
 }	t_map;
 
 typedef struct s_game
