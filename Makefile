@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g3 -O0
 RM = rm -rf
 
 NAME = cub3d
@@ -41,7 +41,14 @@ SRC = main.c \
 		utils/error.c \
 		utils/memory.c \
 		parser/flood_fill.c \
-		parser/duplicate_grid.c
+		parser/duplicate_grid.c \
+		engine/render.c \
+		hooks/hooks.c \
+		hooks/hooks_helpers.c \
+		hooks/move_player.c \
+		hooks/rotate_player.c \
+		engine/raycaster.c \
+		engine/window.c
 # Proje büyüdükçe buraya ekleyeceksin:
 # SRC = main.c parser/parser.c ...
 

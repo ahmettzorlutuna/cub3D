@@ -57,7 +57,6 @@ typedef struct s_game
 	t_mlx		mlx;
 	t_player	player;
 	t_map		map;
-	/* input flags for KeyPress/KeyRelease */
 	int         input_w;
 	int         input_a;
 	int         input_s;
@@ -66,33 +65,37 @@ typedef struct s_game
 	int         input_right;
 }   t_game;
 
-/* Input and movement constants */
 #define MOVE_SPEED 0.08
-#define ROT_SPEED  0.06
-#define COLLIDE_RAD 0.20
+#define ROTATE_SPEED  0.06
+#define PLAYER_MARGIN 0.20
+#define FOV 0.66
 #define WIN_W 1024
 #define WIN_H 768
 
-/* Functions to control input/movement */
-void    apply_input(t_game *g);
-int     is_walkable(t_map *map, int row, int col);
-void    try_move(t_game *g, double dx, double dy);
-void    rotate_player(t_game *g, double angle);
-
 /**
- * ENGINE
+ * HOOKS
  */
-void	create_window(t_game *game);
-void	init_game(t_game *game);
 void	go_forward(t_game * game);
 void	go_down(t_game * game);
 void	go_right(t_game * game);
 void	go_left(t_game * game);
 void	turn_right(t_game * game);
 void	turn_left(t_game * game);
+void    apply_input(t_game *g);
+int     is_walkable(t_map *map, int row, int col);
+void    setup_player_vectors(t_game *game);
+
+/**
+ * ENGINE
+ */
+void	create_window(t_game *game);
+void	init_game(t_game *game);
+void	exit_safe(t_game *game, char *str, int exit_no);
 int		exit_window(t_game *game);
-int		handler(int code, t_game *game);
 void	hooks_handler(t_game *game);
+int		game_loop(void *g);
+void	draw_world(t_game *g);
+void	draw_vertical_line(t_game *g, int x, int start, int end, int color);
 
 /**
  * PARSER
@@ -113,7 +116,6 @@ void    flood_fill(char **map_copy, int height, int x, int y);
 /**
  * ERROR
  */
-void	print_and_exit(t_game *game, char *message, int exit_code);
-void	free_safe(t_game *game);
+void	print_error_and_exit(char *message);
 
 # endif

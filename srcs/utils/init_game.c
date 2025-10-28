@@ -15,6 +15,7 @@
 void init_game(t_game *game)
 {
     ft_memset(game, 0, sizeof(t_game));
+    ft_memset(&game->mlx, 0, sizeof(t_mlx));
     game->map.floor_color = -1;
     game->map.ceiling_color = -1;
     game->map.is_map_started = -1;
