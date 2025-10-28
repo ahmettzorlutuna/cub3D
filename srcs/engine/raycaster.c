@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void draw_world(t_game *g)
+void draw_world(t_game *game)
 {
-    
+    (void)game;
 }
