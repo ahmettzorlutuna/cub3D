@@ -15,10 +15,13 @@
 int main(int argc, char **argv)
 {
 	t_game game;
+
 	validate_arguments(argc, argv);
 	init_game(&game);
 	parse_map_lines(argv[1], &game);
 	finalize_map_grid(&game.map);
 	validate_map_content(&game);
+	setup_player_vectors(&game);
+	create_window(&game);
 	return (0);
 }
