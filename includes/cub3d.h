@@ -3,12 +3,14 @@
 
 #include "../lib/libft/libft.h"
 #include "../srcs/parser/gnl/get_next_line.h"
+#include "../lib/minilibx-linux/mlx.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/time.h>
+#include <math.h>
 
 typedef struct s_vec2
 {
@@ -55,13 +57,46 @@ typedef struct s_game
 	t_mlx		mlx;
 	t_player	player;
 	t_map		map;
-}	t_game;
+	/* input flags for KeyPress/KeyRelease */
+	int         input_w;
+	int         input_a;
+	int         input_s;
+	int         input_d;
+	int         input_left;
+	int         input_right;
+}   t_game;
 
-void init_game(t_game *game);
+/* Input and movement constants */
+#define MOVE_SPEED 0.08
+#define ROT_SPEED  0.06
+#define COLLIDE_RAD 0.20
+#define WIN_W 1024
+#define WIN_H 768
+
+/* Functions to control input/movement */
+void    apply_input(t_game *g);
+int     is_walkable(t_map *map, int row, int col);
+void    try_move(t_game *g, double dx, double dy);
+void    rotate_player(t_game *g, double angle);
+
+/**
+ * ENGINE
+ */
+void	create_window(t_game *game);
+void	init_game(t_game *game);
+void	go_forward(t_game * game);
+void	go_down(t_game * game);
+void	go_right(t_game * game);
+void	go_left(t_game * game);
+void	turn_right(t_game * game);
+void	turn_left(t_game * game);
+int		exit_window(t_game *game);
+int		handler(int code, t_game *game);
+void	hooks_handler(t_game *game);
+
 /**
  * PARSER
  */
-
 void    validate_arguments(int argc, char **argv);
 void	parse_map_lines(char *file_name, t_game *game);
 void	parse_color(t_game *game, int *target_color, char **tokens);
@@ -74,9 +109,11 @@ void	validate_map_content(t_game *game);
 char	**duplicate_grid(t_map *map);
 void	free_grid(char **grid);
 void    flood_fill(char **map_copy, int height, int x, int y);
+
 /**
  * ERROR
  */
-void	print_error_and_exit(char *message);
+void	print_and_exit(t_game *game, char *message, int exit_code);
+void	free_safe(t_game *game);
 
 # endif
