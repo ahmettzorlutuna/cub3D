@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void	free_safe(t_game *game)
+void	exit_safe(t_game *game, char *str, int exit_no)
 {
     if (game->mlx.img_ptr)
         mlx_destroy_image(game->mlx.mlx_ptr, game->mlx.img_ptr);
@@ -23,21 +23,20 @@ void	free_safe(t_game *game)
         mlx_destroy_display(game->mlx.mlx_ptr);
         free(game->mlx.mlx_ptr);
     }
+    if (exit_no == 1)
+        print_error_and_exit(str);
+    else if (exit_no == 0)
+    {
+        ft_putstr_fd(str, 1);
+        ft_putstr_fd("\n", 1);
+        exit(exit_no);
+    }
 }
 
-void print_and_exit(t_game *game, char *message, int exit_code)
+void print_error_and_exit(char *message)
 {
-    free_safe(game);
-    if (exit_code == 1)
-    {
-        ft_putstr_fd("Error..: ", 2);
-        ft_putstr_fd(message, 2);
-        ft_putstr_fd("\n", 2);
-    }
-    else if (exit_code == 0)
-    {
-        ft_putstr_fd(message, 1);
-        ft_putstr_fd("\n", 1);
-    }
-    exit(exit_code);
+    ft_putstr_fd("Error..: ", 2);
+    ft_putstr_fd(message, 2);
+    ft_putstr_fd("\n", 2);
+    exit(1);
 }
