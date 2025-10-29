@@ -6,7 +6,7 @@
 /*   By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 19:11:06 by ekibar            #+#    #+#             */
-/*   Updated: 2025/10/28 16:10:33 by ekibar           ###   ########.fr       */
+/*   Updated: 2025/10/28 20:38:00 by ekibar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	key_press_handler(int keycode, t_game *game)
 	if (keycode == 119) // w'ye bastığında
 		game->input.w = 1;
 	else if (keycode == 115) // s
-		game->input.d = 1;
+		game->input.s = 1;
 	else if (keycode == 97) // a
 		game->input.a = 1;
 	else if (keycode == 100) // d
