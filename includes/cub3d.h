@@ -12,6 +12,32 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+typedef struct s_ray
+{
+    double  camera_x;
+    double  ray_dir_x;
+    double  ray_dir_y;
+    int     map_x;
+    int     map_y;
+    double  side_dist_x;
+    double  side_dist_y;
+    double  delta_dist_x;
+    double  delta_dist_y;
+    int     step_x;
+    int     step_y;
+}   t_ray;
+
+typedef struct s_hit
+{
+    int     hit;
+    int     side;
+    double  perp_wall_dist;
+    int     line_h;
+    int     draw_start;
+    int     draw_end;
+    int     color;
+}   t_hit;
+
 typedef struct s_vec2
 {
 	double		x;
@@ -86,7 +112,7 @@ void			go_right(t_game *game);
 void			go_left(t_game *game);
 void			turn_right(t_game *game);
 void			turn_left(t_game *game);
-void			apply_input(t_game *g);
+void			apply_input(t_game *game);
 int				is_walkable(t_map *map, int row, int col);
 void			setup_player_vectors(t_game *game);
 
@@ -98,10 +124,15 @@ void			init_game(t_game *game);
 void			exit_safe(t_game *game, char *str, int exit_no);
 int				exit_window(t_game *game);
 void			hooks_handler(t_game *game);
-int				game_loop(void *g);
-void			draw_world(t_game *g);
-void			draw_vertical_line(t_game *g, int x, int start, int end,
-					int color);
+int				game_loop(void *game);
+void			draw_world(t_game *game);
+void			draw_vertical_line(t_game *game, int x, t_hit *hit);
+void			ray_run_dda(t_game *game, t_ray *ray, t_hit *h);
+void    		ray_step_init(t_game *game, t_ray *ray);
+void    		ray_init(t_game *game, t_ray *ray, int x);
+void    		ray_pick_color(t_hit *hit);
+void    		ray_project(t_game *game, t_ray *ray, t_hit *h);
+
 
 /**
  * PARSER

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/12 21:25:23 by azorlutu          #+#    #+#              #
-#    Updated: 2025/10/20 01:07:48 by marvin           ###   ########.fr        #
+#    Updated: 2025/10/28 17:56:20 by ekibar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,10 @@ SRC = main.c \
 		hooks/hooks_helpers.c \
 		hooks/move_player.c \
 		hooks/rotate_player.c \
-		engine/raycaster.c \
+		engine/raycast_dda.c \
+		engine/raycast_draw.c \
+		engine/raycast_init.c \
+		engine/raycast_project.c \
 		engine/window.c
 # Proje büyüdükçe buraya ekleyeceksin:
 # SRC = main.c parser/parser.c ...
