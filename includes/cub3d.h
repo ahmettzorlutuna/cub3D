@@ -177,4 +177,9 @@ void			flood_fill(char **map_copy, int height, int x, int y);
  */
 void			print_error_and_exit(char *message);
 
+/**
+ * CLEANUP
+ */
+void			cleanup(t_game *game);
+
 #endif

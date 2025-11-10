@@ -3,17 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azorlutu <azorlutu@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 23:21:53 by azorlutu          #+#    #+#             */
-/*   Updated: 2025/10/21 23:21:54 by azorlutu         ###   ########.tr       */
+/*   Updated: 2025/11/10 21:21:18 by ekibar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d.h"	
 
 void	exit_safe(t_game *game, char *str, int exit_no)
 {
+    /* Destroy texture images via MLX if available */
+    if (game->texture && game->mlx.mlx_ptr)
+    {
+        if (game->texture[0].img)
+            mlx_destroy_image(game->mlx.mlx_ptr, game->texture[0].img);
+        if (game->texture[1].img)
+            mlx_destroy_image(game->mlx.mlx_ptr, game->texture[1].img);
+        if (game->texture[2].img)
+            mlx_destroy_image(game->mlx.mlx_ptr, game->texture[2].img);
+        if (game->texture[3].img)
+            mlx_destroy_image(game->mlx.mlx_ptr, game->texture[3].img);
+    }
+    if (game->texture)
+        free(game->texture);
+    if(game->map.north_texture_path)
+        free(game->map.north_texture_path);
+    if(game->map.south_texture_path)
+        free(game->map.south_texture_path);
+    if(game->map.east_texture_path)
+        free(game->map.east_texture_path);
+    if(game->map.west_texture_path)
+        free(game->map.west_texture_path);
+    if(game->map.grid)
+        free_grid(game->map.grid);
     if (game->mlx.img_ptr)
         mlx_destroy_image(game->mlx.mlx_ptr, game->mlx.img_ptr);
     if (game->mlx.win_ptr)

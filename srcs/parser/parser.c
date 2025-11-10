@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azorlutu <azorlutu@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 23:11:36 by azorlutu          #+#    #+#             */
-/*   Updated: 2025/10/21 23:11:37 by azorlutu         ###   ########.tr       */
+/*   Updated: 2025/11/10 20:47:45 by ekibar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,20 @@ void parse_map_lines(char *file_name, t_game *game)
     line = get_next_line(fd);
     while (line != NULL)
     {
-        if(game->map.is_map_started != 1)
+        if (game->map.is_map_started != 1)
             trimmed_line = ft_strtrim(line, " \t\n");
-        if(game->map.is_map_started == 1)
+        else
             trimmed_line = ft_strtrim(line, " \t");
-        if(trimmed_line[0] == '\0')
+        if (!trimmed_line)
+        {
+            free(line);
+            line = get_next_line(fd);
+            continue;
+        }
+        if (trimmed_line[0] == '\0')
         {
             free(trimmed_line);
+            free(line);
             line = get_next_line(fd);
             continue;
         }

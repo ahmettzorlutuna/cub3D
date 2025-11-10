@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azorlutu <azorlutu@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 21:30:15 by azorlutu          #+#    #+#             */
-/*   Updated: 2025/10/19 21:30:16 by azorlutu         ###   ########.tr       */
+/*   Updated: 2025/11/10 20:45:22 by ekibar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int main(int argc, char **argv)
 	validate_map_content(&game);
 	setup_player_vectors(&game);
 	create_window(&game);
+	cleanup(&game);
 	return (0);
 }
