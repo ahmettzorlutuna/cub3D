@@ -6,7 +6,7 @@
 #    By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/12 21:25:23 by azorlutu          #+#    #+#              #
-#    Updated: 2025/10/28 17:56:20 by ekibar           ###   ########.fr        #
+#    Updated: 2025/10/30 17:45:35 by ekibar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ SRC = main.c \
 		engine/raycast_draw.c \
 		engine/raycast_init.c \
 		engine/raycast_project.c \
-		engine/window.c
+		engine/window.c \
+		engine/textures.c
 # Proje büyüdükçe buraya ekleyeceksin:
 # SRC = main.c parser/parser.c ...
 
