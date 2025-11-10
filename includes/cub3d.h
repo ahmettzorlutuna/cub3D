@@ -94,6 +94,8 @@ typedef struct s_game
 	t_player	player;
 	t_map		map;
 	t_input		input;
+	t_ray		ray;
+	t_hit		hit;
 }				t_game;
 
 # define MOVE_SPEED 0.08
@@ -126,12 +128,12 @@ int				exit_window(t_game *game);
 void			hooks_handler(t_game *game);
 int				game_loop(void *game);
 void			draw_world(t_game *game);
-void			draw_vertical_line(t_game *game, int x, t_hit *hit);
-void			ray_run_dda(t_game *game, t_ray *ray, t_hit *h);
-void    		ray_step_init(t_game *game, t_ray *ray);
-void    		ray_init(t_game *game, t_ray *ray, int x);
-void    		ray_pick_color(t_hit *hit);
-void    		ray_project(t_game *game, t_ray *ray, t_hit *h);
+void			draw_pixel(t_game *game, int x, int y);
+void			ray_run_dda(t_game *game);
+void    		ray_step_init(t_game *game);
+void    		ray_init(t_game *game, int x);
+void    		ray_pick_color(t_game *game, int x, int y);
+void    		ray_project(t_game *game);
 
 
 /**
