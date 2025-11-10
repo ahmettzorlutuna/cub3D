@@ -6,7 +6,7 @@
 /*   By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 18:44:27 by ekibar            #+#    #+#             */
-/*   Updated: 2025/10/30 16:32:51 by ekibar           ###   ########.fr       */
+/*   Updated: 2025/10/30 19:41:22 by ekibar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ static void	put_pixel(t_game *game, int x, int y, int color)
 
 void	draw_pixel(t_game *game, int x, int y)
 {
-	if (x < 0 || x >= WIN_W) // sınırların dışındaysa
+	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H) // sınırların dışındaysa
 		return ;
 	if (game->hit.draw_start < 0) // ekrandan taşarsa yukarı taşmayı kes
 		game->hit.draw_start = 0;
 	if (game->hit.draw_end >= WIN_H) // ekrandan taşarsa aşağı taşmayı kes
 		game->hit.draw_end = WIN_H - 1;
-	ray_pick_color(game, x, y);
+	ray_pick_color(game, y);
 	put_pixel(game, x, y, game->hit.color);
 }
 

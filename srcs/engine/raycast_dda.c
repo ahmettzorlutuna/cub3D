@@ -6,7 +6,7 @@
 /*   By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 19:11:06 by ekibar            #+#    #+#             */
-/*   Updated: 2025/10/29 03:17:58 by ekibar           ###   ########.fr       */
+/*   Updated: 2025/10/30 15:59:24 by ekibar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,26 @@ static int  in_bounds(t_game *game, int x, int y)
     return (1);
 }
 
-void    ray_run_dda(t_game *game, t_ray *ray, t_hit *h)
+void    ray_run_dda(t_game *game)
 {
-    h->hit = 0;
-    while (!h->hit)
+    game->hit.hit = 0;
+    while (!game->hit.hit)
     {
-        if (ray->side_dist_x < ray->side_dist_y)
+        if (game->ray.side_dist_x < game->ray.side_dist_y)
         {
-            ray->side_dist_x += ray->delta_dist_x;
-            ray->map_x += ray->step_x;
-            h->side = 0; // ışın dikey çizgiden geçti
+            game->ray.side_dist_x += game->ray.delta_dist_x;
+            game->ray.map_x += game->ray.step_x;
+            game->hit.side = 0; // ışın dikey çizgiden geçti
         }
         else
         {
-            ray->side_dist_y += ray->delta_dist_y;
-            ray->map_y += ray->step_y;
-            h->side = 1; // ışın yatay çizgiden geçti
+            game->ray.side_dist_y += game->ray.delta_dist_y;
+            game->ray.map_y += game->ray.step_y;
+            game->hit.side = 1; // ışın yatay çizgiden geçti
         }
-        if (!in_bounds(game, ray->map_x, ray->map_y))
+        if (!in_bounds(game, game->ray.map_x, game->ray.map_y))
             break;
-        if (game->map.grid[ray->map_y][ray->map_x] == '1') // duvara çarptı
-            h->hit = 1;
+        if (game->map.grid[game->ray.map_y][game->ray.map_x] == '1') // duvara çarptı
+            game->hit.hit = 1;
     }
 }

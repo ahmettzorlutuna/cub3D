@@ -6,7 +6,7 @@
 /*   By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 19:11:06 by ekibar            #+#    #+#             */
-/*   Updated: 2025/10/29 04:00:31 by ekibar           ###   ########.fr       */
+/*   Updated: 2025/10/30 20:17:23 by ekibar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,22 @@
 void    draw_world(t_game *game)
 {
     int     x;
-    t_ray   ray;
-    t_hit   hit;
+    int     y;
 
     x = 0;
     while (x < WIN_W)
     {
-        ray_init(game, &ray, x);
-        ray_step_init(game, &ray);
-        ray_run_dda(game, &ray, &hit);
-        ray_project(game, &ray, &hit);
-        ray_pick_color(&hit);
-        draw_vertical_line(game, x, &hit);
+        ray_init(game, x);
+        ray_step_init(game);
+        ray_run_dda(game);
+        ray_project(game);
+        y = game->hit.draw_start;
+        // duvarda pixel sütununun içindeki satırları gezme
+        while (y < game->hit.draw_end)
+        {
+            draw_pixel(game, x, y);
+            y++;
+        }
         x++;
     }
 }
