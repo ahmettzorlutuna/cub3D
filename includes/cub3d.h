@@ -36,6 +36,8 @@ typedef struct s_hit
     int     draw_start;
     int     draw_end;
     int     color;
+    int     tex_x;
+    int     tex_y;
 }   t_hit;
 
 typedef struct s_vec2
@@ -88,6 +90,17 @@ typedef struct s_map
 	int			is_map_started;
 }				t_map;
 
+typedef struct s_texture
+{
+	void		*img;
+	char		*addr;
+	int			width;
+	int			height;
+	int			bpp;
+	int			line_len;
+	int			endian;
+}				t_texture;
+
 typedef struct s_game
 {
 	t_mlx		mlx;
@@ -96,6 +109,7 @@ typedef struct s_game
 	t_input		input;
 	t_ray		ray;
 	t_hit		hit;
+	t_texture	*texture;
 }				t_game;
 
 # define MOVE_SPEED 0.08
@@ -104,6 +118,10 @@ typedef struct s_game
 # define FOV 0.66
 # define WIN_W 1024
 # define WIN_H 768
+# define TEX_NORTH 0
+# define TEX_SOUTH 1
+# define TEX_WEST 2
+# define TEX_EAST 3
 
 /**
  * HOOKS
@@ -121,6 +139,7 @@ void			setup_player_vectors(t_game *game);
 /**
  * ENGINE
  */
+void			load_textures(t_game *game, char *path, int i);
 void			create_window(t_game *game);
 void			init_game(t_game *game);
 void			exit_safe(t_game *game, char *str, int exit_no);
@@ -132,7 +151,7 @@ void			draw_pixel(t_game *game, int x, int y);
 void			ray_run_dda(t_game *game);
 void    		ray_step_init(t_game *game);
 void    		ray_init(t_game *game, int x);
-void    		ray_pick_color(t_game *game, int x, int y);
+void    		ray_pick_color(t_game *game, int y);
 void    		ray_project(t_game *game);
 
 
