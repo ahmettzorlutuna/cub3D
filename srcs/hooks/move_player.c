@@ -19,9 +19,8 @@ static void	move_player(t_game *game, double dx, double dy)
 	int		map_x;
 	int		map_y;
 
-	new_x = game->player.pos.x + dx; // oyuncunun yeni x pozisyonu
-	new_y = game->player.pos.y + dy; // oyuncunun yeni y pozisyonu
-	// x ekseninde hareket
+	new_x = game->player.pos.x + dx;
+	new_y = game->player.pos.y + dy;
 	if (dx > 0)
 		map_x = (int)(new_x + PLAYER_MARGIN);
 	else
@@ -29,7 +28,6 @@ static void	move_player(t_game *game, double dx, double dy)
 	map_y = (int)(game->player.pos.y);
 	if (is_walkable(&game->map, map_y, map_x))
 		game->player.pos.x = new_x;
-	// y ekseninde hareket
 	map_x = (int)(game->player.pos.x);
 	if (dy > 0)
 		map_y = (int)(new_y + PLAYER_MARGIN);
