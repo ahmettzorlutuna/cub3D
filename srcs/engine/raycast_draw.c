@@ -12,25 +12,24 @@
 
 #include "../includes/cub3d.h"
 
-void    draw_world(t_game *game)
+void	draw_world(t_game *game)
 {
-    int     x;
-    int     y;
+	int	x;
+	int	y;
 
-    x = 0;
-    while (x < WIN_W)
-    {
-        ray_init(game, x);
-        ray_step_init(game);
-        ray_run_dda(game);
-        ray_project(game);
-        y = game->hit.draw_start;
-        // duvarda pixel sütununun içindeki satırları gezme
-        while (y < game->hit.draw_end)
-        {
-            draw_pixel(game, x, y);
-            y++;
-        }
-        x++;
-    }
+	x = 0;
+	while (x < WIN_W)
+	{
+		ray_init(game, x);
+		ray_step_init(game);
+		ray_run_dda(game);
+		ray_project(game);
+		y = game->hit.draw_start;
+		while (y < game->hit.draw_end)
+		{
+			draw_pixel(game, x, y);
+			y++;
+		}
+		x++;
+	}
 }
