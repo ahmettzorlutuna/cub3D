@@ -20,36 +20,36 @@ int	exit_window(t_game *game)
 
 int	key_press_handler(int keycode, t_game *game)
 {
-	if (keycode == 119) // w'ye bastığında
+	if (keycode == 119)
 		game->input.w = 1;
-	else if (keycode == 115) // s
+	else if (keycode == 115)
 		game->input.s = 1;
-	else if (keycode == 97) // a
+	else if (keycode == 97)
 		game->input.a = 1;
-	else if (keycode == 100) // d
+	else if (keycode == 100)
 		game->input.d = 1;
-	else if (keycode == 65363) // sağa dön
+	else if (keycode == 65363)
 		game->input.right = 1;
-	else if (keycode == 65361) // sola dön
+	else if (keycode == 65361)
 		game->input.left = 1;
-	else if (keycode == 65307) // ESC
+	else if (keycode == 65307)
 		exit_window(game);
 	return (0);
 }
 
 int	key_release_handler(int keycode, t_game *game)
 {
-	if (keycode == 119) // w bırakıldığında
+	if (keycode == 119)
 		game->input.w = 0;
-	else if (keycode == 115) // s
+	else if (keycode == 115)
 		game->input.s = 0;
-	else if (keycode == 97) // a
+	else if (keycode == 97)
 		game->input.a = 0;
-	else if (keycode == 100) // d
+	else if (keycode == 100)
 		game->input.d = 0;
-	else if (keycode == 65363) // sağa dön
+	else if (keycode == 65363)
 		game->input.right = 0;
-	else if (keycode == 65361) // sola dön
+	else if (keycode == 65361)
 		game->input.left = 0;
 	return (0);
 }
@@ -57,21 +57,22 @@ int	key_release_handler(int keycode, t_game *game)
 // alınan input durumuna göre oyuncunun pozisyonunu ve yönünü günceller.
 void	apply_input(t_game *game)
 {
-	if (game->input.w) // ileri git
+	if (game->input.w)
 		go_forward(game);
-	if (game->input.s) // geri git
+	if (game->input.s)
 		go_down(game);
-	if (game->input.a) // sola git
+	if (game->input.a)
 		go_left(game);
-	if (game->input.d) // sağa git
+	if (game->input.d)
 		go_right(game);
-	if (game->input.left) // sola dön
+	if (game->input.left)
 		turn_left(game);
-	if (game->input.right) // sağa dön
+	if (game->input.right)
 		turn_right(game);
 }
 
-// klavye ve pencere olaylarını işlemek için MLX kütüphanesinin hook fonksiyonlarını ayarlar.
+// klavye ve pencere olaylarını işlemek için 
+// MLX kütüphanesinin hook fonksiyonlarını ayarlar.
 void	hooks_handler(t_game *game)
 {
 	mlx_hook(game->mlx.win_ptr, 2, 1L << 0, key_press_handler, game);
