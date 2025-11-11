@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void validate_map_content(t_game *game)
+void	validate_map_content(t_game *game)
 {
 	int		x;
 	int		y;
@@ -23,7 +23,6 @@ void validate_map_content(t_game *game)
 	x = -1;
 	y = -1;
 	player_count = 0;
-
 	y = 0;
 	while (y < game->map.height)
 	{
@@ -31,9 +30,9 @@ void validate_map_content(t_game *game)
 		while (game->map.grid[y][x] != '\0')
 		{
 			current_char = game->map.grid[y][x];
-			if(!ft_strchr("01NWSE ", current_char))
+			if (!ft_strchr("01NWSE ", current_char))
 				print_error_and_exit("Invalid char found in the map");
-			if(ft_strchr("NWSE",current_char))
+			if (ft_strchr("NWSE", current_char))
 			{
 				player_count++;
 				game->player.pos.x = (double)x + 0.5;
@@ -44,43 +43,44 @@ void validate_map_content(t_game *game)
 		}
 		y++;
 	}
-	if(player_count != 1)
+	if (player_count != 1)
 		print_error_and_exit("There should be 1 player on the map.");
 	map_copy = duplicate_grid(&game->map);
-	flood_fill(map_copy, game->map.height, (int)game->player.pos.x, (int)game->player.pos.y);
+	flood_fill(map_copy, game->map.height,
+		(int)game->player.pos.x, (int)game->player.pos.y);
 	y = 0;
 	while (y < game->map.height)
-    {
+	{
 		printf("%s\n", map_copy[y]);
-        y++;
-    }
+		y++;
+	}
 	free_grid(map_copy);
 }
 
-void finalize_map_grid(t_map *map)
+void	finalize_map_grid(t_map *map)
 {
-    int		i;
-    t_list	*current_node;
+	int		i;
+	t_list	*current_node;
 	char	*line_copy;
 
-    map->height = ft_lstsize(map->line_list);
-    if(map->height == 0)
-    {
-        ft_lstclear(&map->line_list, free);
-        print_error_and_exit("The map is empty");
-    }
-    map->grid = malloc(sizeof(char *) * (map->height + 1));
-    if(map->grid == NULL)
-    {
-        ft_lstclear(&map->line_list, free);
-        print_error_and_exit("Malloc (map grid)");
-    }
+	map->height = ft_lstsize(map->line_list);
+	if (map->height == 0)
+	{
+		ft_lstclear(&map->line_list, free);
+		print_error_and_exit("The map is empty");
+	}
+	map->grid = malloc(sizeof(char *) * (map->height + 1));
+	if (map->grid == NULL)
+	{
+		ft_lstclear(&map->line_list, free);
+		print_error_and_exit("Malloc (map grid)");
+	}
 	i = 0;
 	current_node = map->line_list;
 	while (current_node != NULL)
 	{
 		line_copy = ft_strdup((char *)current_node->content);
-		if(!line_copy)
+		if (!line_copy)
 		{
 			while (i > 0)
 			{
