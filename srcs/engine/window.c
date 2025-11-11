@@ -18,9 +18,9 @@ void	create_window(t_game *game)
 	if (!game->mlx.mlx_ptr)
 		exit_safe(game, "Mlx_init failed!", 1);
 	load_textures(game, game->map.north_texture_path, 0);
-    load_textures(game, game->map.south_texture_path, 1);
-    load_textures(game, game->map.west_texture_path, 2);
-    load_textures(game, game->map.east_texture_path, 3);
+	load_textures(game, game->map.south_texture_path, 1);
+	load_textures(game, game->map.west_texture_path, 2);
+	load_textures(game, game->map.east_texture_path, 3);
 	game->mlx.win_ptr = mlx_new_window(game->mlx.mlx_ptr, WIN_W, WIN_H,
 			"cub3D");
 	if (!game->mlx.win_ptr)
