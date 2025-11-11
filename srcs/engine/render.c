@@ -25,11 +25,11 @@ static void	put_pixel(t_game *game, int x, int y, int color)
 
 void	draw_pixel(t_game *game, int x, int y)
 {
-	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H) // sınırların dışındaysa
+	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
 		return ;
-	if (game->hit.draw_start < 0) // ekrandan taşarsa yukarı taşmayı kes
+	if (game->hit.draw_start < 0)
 		game->hit.draw_start = 0;
-	if (game->hit.draw_end >= WIN_H) // ekrandan taşarsa aşağı taşmayı kes
+	if (game->hit.draw_end >= WIN_H)
 		game->hit.draw_end = WIN_H - 1;
 	ray_pick_color(game, y);
 	put_pixel(game, x, y, game->hit.color);
