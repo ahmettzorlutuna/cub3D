@@ -12,13 +12,13 @@
 
 #include "../includes/cub3d.h"
 
-char **duplicate_grid(t_map *map)
+char	**duplicate_grid(t_map *map)
 {
 	char	**map_copy;
 	int		y;
-	
+
 	map_copy = malloc(sizeof(char *) * (map->height + 1));
-	if(!map_copy)
+	if (!map_copy)
 		print_error_and_exit("Map copy malloc error");
 	y = 0;
 	while (y < map->height)
@@ -34,5 +34,5 @@ char **duplicate_grid(t_map *map)
 		y++;
 	}
 	map_copy[y] = NULL;
-	return(map_copy);
+	return (map_copy);
 }
