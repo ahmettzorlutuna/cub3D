@@ -1,94 +1,94 @@
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
-#include "../lib/libft/libft.h"
-#include "../lib/minilibx-linux/mlx.h"
-#include "../srcs/parser/gnl/get_next_line.h"
-#include <fcntl.h>
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/time.h>
-#include <unistd.h>
+# include "../lib/libft/libft.h"
+# include "../lib/minilibx-linux/mlx.h"
+# include "../srcs/parser/gnl/get_next_line.h"
+# include <fcntl.h>
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <sys/time.h>
+# include <unistd.h>
 
 typedef struct s_ray
 {
-	double camera_x;
-	double ray_dir_x;
-	double ray_dir_y;
-	int map_x;
-	int map_y;
-	double side_dist_x;
-	double side_dist_y;
-	double delta_dist_x;
-	double delta_dist_y;
-	int step_x;
-	int step_y;
-} t_ray;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+}	t_ray;
 
 typedef struct s_hit
 {
-	int hit;
-	int side;
-	double perp_wall_dist;
-	int line_h;
-	int draw_start;
-	int draw_end;
-	int color;
-	int tex_x;
-	int tex_y;
-} t_hit;
+	int		hit;
+	int		side;
+	double	perp_wall_dist;
+	int		line_h;
+	int		draw_start;
+	int		draw_end;
+	int		color;
+	int		tex_x;
+	int		tex_y;
+}	t_hit;
 
 typedef struct s_vec2
 {
-	double x;
-	double y;
-} t_vec2;
+	double	x;
+	double	y;
+}	t_vec2;
 
 typedef struct s_mlx
 {
-	void *mlx_ptr;
-	void *win_ptr;
-	void *img_ptr;
-	char *addr;
-	int bpp;
-	int line_len;
-	int endian;
-} t_mlx;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_mlx;
 
 typedef struct s_player
 {
-	t_vec2 pos;
-	t_vec2 dir;
-	t_vec2 plane;
-	char current_direction;
-} t_player;
+	t_vec2	pos;
+	t_vec2	dir;
+	t_vec2	plane;
+	char	current_direction;
+}	t_player;
 
 typedef struct s_input
 {
-	int w;
-	int a;
-	int s;
-	int d;
-	int left;
-	int right;
-} t_input;
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+}	t_input;
 
 typedef struct s_map
 {
-	char **grid;
-	int width;
-	int height;
-	char *north_texture_path;
-	char *south_texture_path;
-	char *west_texture_path;
-	char *east_texture_path;
-	int floor_color;
-	int ceiling_color;
-	t_list *line_list;
-	int is_map_started;
-} t_map;
+	char	**grid;
+	int		width;
+	int		height;
+	char	*north_texture_path;
+	char	*south_texture_path;
+	char	*west_texture_path;
+	char	*east_texture_path;
+	int		floor_color;
+	int		ceiling_color;
+	t_list	*line_list;
+	int		is_map_started;
+}	t_map;
 
 typedef struct s_texture
 {
