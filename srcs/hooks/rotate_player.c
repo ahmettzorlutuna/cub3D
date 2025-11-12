@@ -45,35 +45,3 @@ void	turn_right(t_game *game)
 {
 	rotate_player(game, ROTATE_SPEED);
 }
-
-void	setup_player_vectors(t_game *game)
-{
-	if (game->player.current_direction == 'N')
-	{
-		game->player.dir.x = 0;
-		game->player.dir.y = -1;
-		game->player.plane.x = FOV;
-		game->player.plane.y = 0;
-	}
-	else if (game->player.current_direction == 'S')
-	{
-		game->player.dir.x = 0;
-		game->player.dir.y = 1;
-		game->player.plane.x = -FOV;
-		game->player.plane.y = 0;
-	}
-	if (game->player.current_direction == 'W')
-	{
-		game->player.dir.x = -1;
-		game->player.dir.y = 0;
-		game->player.plane.x = 0;
-		game->player.plane.y = -FOV;
-	}
-	if (game->player.current_direction == 'E')
-	{
-		game->player.dir.x = 1;
-		game->player.dir.y = 0;
-		game->player.plane.x = 0;
-		game->player.plane.y = FOV;
-	}
-}

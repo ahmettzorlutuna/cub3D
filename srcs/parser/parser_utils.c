@@ -12,6 +12,18 @@
 
 #include "../includes/cub3d.h"
 
+void	print_map_copy(char **map_copy, int height)
+{
+	int	y;
+
+	y = 0;
+	while (y < height)
+	{
+		printf("%s\n", map_copy[y]);
+		y++;
+	}
+}
+
 void	free_grid(char **grid)
 {
 	int	y;

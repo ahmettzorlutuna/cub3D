@@ -74,7 +74,14 @@ char	*get_next_line(int fd)
 	static char	*remaining;
 
 	if (fd < 0 || BUFFER_SIZE == 0)
+	{
+		if (remaining)
+		{
+			free(remaining);
+			remaining = NULL;
+		}
 		return (NULL);
+	}
 	if (remaining_data(fd, &remaining) == -1)
 	{
 		free(remaining);

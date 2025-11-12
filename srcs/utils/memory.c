@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void	cleanup(t_game *game)
+static void	cleanup_textures_and_images(t_game *game)
 {
 	if (game->texture && game->mlx.mlx_ptr)
 	{
@@ -27,6 +27,10 @@ void	cleanup(t_game *game)
 	}
 	if (game->texture)
 		free(game->texture);
+}
+
+static void	cleanup_map_paths_and_grid(t_game *game)
+{
 	if (game->map.north_texture_path)
 		free(game->map.north_texture_path);
 	if (game->map.south_texture_path)
@@ -37,6 +41,10 @@ void	cleanup(t_game *game)
 		free(game->map.west_texture_path);
 	if (game->map.grid)
 		free_grid(game->map.grid);
+}
+
+static void	cleanup_mlx_and_window(t_game *game)
+{
 	if (game->mlx.img_ptr)
 		mlx_destroy_image(game->mlx.mlx_ptr, game->mlx.img_ptr);
 	if (game->mlx.win_ptr)
@@ -46,6 +54,13 @@ void	cleanup(t_game *game)
 		mlx_destroy_display(game->mlx.mlx_ptr);
 		free(game->mlx.mlx_ptr);
 	}
+}
+
+void	cleanup(t_game *game)
+{
+	cleanup_textures_and_images(game);
+	cleanup_map_paths_and_grid(game);
+	cleanup_mlx_and_window(game);
 }
 
 void	free_string_array(char **array)

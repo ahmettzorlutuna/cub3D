@@ -1,0 +1,21 @@
+NO textures/basic/path_to_the_north_texture.xpm                                                        
+SO textures/basic/path_to_the_south_texture.xpm
+WE textures/basic/path_to_the_west_texture.xpm
+EA textures/basic/path_to_the_east_texture.xpm
+
+F 20,20,20
+C 200,200,200
+
+111
+101
+101
+101
+101
+101
+101
+101
+101
+101
+101
+1S1
+111

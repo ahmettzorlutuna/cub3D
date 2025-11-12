@@ -12,9 +12,9 @@
 
 #include "../includes/cub3d.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_game game;
+	t_game	game;
 
 	validate_arguments(argc, argv);
 	init_game(&game);

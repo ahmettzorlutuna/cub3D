@@ -12,18 +12,14 @@
 
 #include "../includes/cub3d.h"
 
-void	validate_map_content(t_game *game)
+static	void	check_map_chars_and_player(t_game *game, int *player_count)
 {
 	int		x;
 	int		y;
-	int		player_count;
 	char	current_char;
-	char	**map_copy;
 
-	x = -1;
-	y = -1;
-	player_count = 0;
 	y = 0;
+	*player_count = 0;
 	while (y < game->map.height)
 	{
 		x = 0;
@@ -31,10 +27,10 @@ void	validate_map_content(t_game *game)
 		{
 			current_char = game->map.grid[y][x];
 			if (!ft_strchr("01NWSE ", current_char))
-				print_error_and_exit("Invalid char found in the map");
+				exit_safe(game, "Invalid char found in the map", 1);
 			if (ft_strchr("NWSE", current_char))
 			{
-				player_count++;
+				(*player_count)++;
 				game->player.pos.x = (double)x + 0.5;
 				game->player.pos.y = (double)y + 0.5;
 				game->player.current_direction = current_char;
@@ -43,38 +39,45 @@ void	validate_map_content(t_game *game)
 		}
 		y++;
 	}
+}
+
+void	validate_map_content(t_game *game)
+{
+	int		player_count;
+	char	**map_copy;
+
+	check_map_chars_and_player(game, &player_count);
 	if (player_count != 1)
-		print_error_and_exit("There should be 1 player on the map.");
-	map_copy = duplicate_grid(&game->map);
-	flood_fill(map_copy, game->map.height,
+		exit_safe(game, "There should be 1 player on the map.", 1);
+	map_copy = duplicate_grid(game, &game->map);
+	flood_fill(game, map_copy, game->map.height,
 		(int)game->player.pos.x, (int)game->player.pos.y);
-	y = 0;
-	while (y < game->map.height)
-	{
-		printf("%s\n", map_copy[y]);
-		y++;
-	}
+	print_map_copy(map_copy, game->map.height);
 	free_grid(map_copy);
 }
 
-void	finalize_map_grid(t_map *map)
+static void	check_map_height_and_malloc(t_game *game, t_map *map)
 {
-	int		i;
-	t_list	*current_node;
-	char	*line_copy;
-
 	map->height = ft_lstsize(map->line_list);
 	if (map->height == 0)
 	{
 		ft_lstclear(&map->line_list, free);
-		print_error_and_exit("The map is empty");
+		exit_safe(game, "The map is empty", 1);
 	}
 	map->grid = malloc(sizeof(char *) * (map->height + 1));
 	if (map->grid == NULL)
 	{
 		ft_lstclear(&map->line_list, free);
-		print_error_and_exit("Malloc (map grid)");
+		exit_safe(game, "Malloc (map grid)", 1);
 	}
+}
+
+static void	copy_lines_to_grid(t_game *game, t_map *map)
+{
+	int		i;
+	char	*line_copy;
+	t_list	*current_node;	
+
 	i = 0;
 	current_node = map->line_list;
 	while (current_node != NULL)
@@ -89,12 +92,18 @@ void	finalize_map_grid(t_map *map)
 			}
 			free(map->grid);
 			ft_lstclear(&map->line_list, free);
-			print_error_and_exit("Line copy could not created");
+			exit_safe(game, "Line copy could not created", 1);
 		}
 		map->grid[i] = line_copy;
 		i++;
 		current_node = current_node->next;
 	}
 	map->grid[i] = NULL;
+}
+
+void	finalize_map_grid(t_game *game, t_map *map)
+{
+	check_map_height_and_malloc(game, map);
+	copy_lines_to_grid(game, map);
 	ft_lstclear(&map->line_list, free);
 }

@@ -33,12 +33,14 @@ MLX = $(MLX_PATH)libmlx.a
 SRC = main.c \
 		parser/parser_utils.c \
 		parser/parser.c \
+		parser/parse_color.c \
 		parser/gnl/get_next_line.c \
 		parser/gnl/get_next_line_utils.c \
 		parser/handle_map_line.c \
 		parser/finalize_map.c \
 		utils/init_game.c \
 		utils/error.c \
+		utils/error2.c \
 		utils/memory.c \
 		parser/flood_fill.c \
 		parser/duplicate_grid.c \
@@ -47,14 +49,13 @@ SRC = main.c \
 		hooks/hooks_helpers.c \
 		hooks/move_player.c \
 		hooks/rotate_player.c \
+		hooks/setup_player_vectors.c \
 		engine/raycast_dda.c \
 		engine/raycast_draw.c \
 		engine/raycast_init.c \
 		engine/raycast_project.c \
 		engine/window.c \
 		engine/textures.c
-# Proje büyüdükçe buraya ekleyeceksin:
-# SRC = main.c parser/parser.c ...
 
 SRCS    = $(addprefix $(SRC_PATH), $(SRC))
 OBJ     = $(SRC:.c=.o)

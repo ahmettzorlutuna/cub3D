@@ -65,6 +65,7 @@ int	game_loop(void *g)
 	game = (t_game *)g;
 	apply_input(game);
 	draw_background(game);
+	draw_world(game);
 	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr,
 		game->mlx.img_ptr, 0, 0);
 	return (0);
