@@ -14,7 +14,7 @@
 
 int	exit_window(t_game *game)
 {
-	exit_safe(game, "Window closed\n", 0);
+	exit_safe(game, "", 0);
 	return (0);
 }
 

@@ -24,12 +24,8 @@ static	int	all_elements_defined(t_game *game)
 	return (1);
 }
 
-static	void	handle_parse_error(t_game *game, char *message, char **tokens,
-		char *trimmed_line, char *line)
+static	void	handle_parse_error(t_game *game, char *message)
 {
-	free_string_array(tokens);
-	free(trimmed_line);
-	free(line);
 	exit_safe(game, message, 1);
 }
 
@@ -39,16 +35,15 @@ void	handle_map_line(t_game *game, char *line,
 	char	*line_copy;
 	t_list	*new_node;
 
+	(void)tokens;
+	(void)trimmed_line;
 	if (!all_elements_defined(game))
-		handle_parse_error(game, "The map started before all elements were defined.",
-			tokens, trimmed_line, line);
+		handle_parse_error(game, "The map started before all elements were defined.");
 	line_copy = create_map_line_copy(line);
 	if (!line_copy)
-		handle_parse_error(game, "Map line could not copy (malloc).",
-			tokens, trimmed_line, line);
+		handle_parse_error(game, "Map line could not copy (malloc).");
 	new_node = ft_lstnew(line_copy);
 	if (!new_node)
-		handle_parse_error(game, "List node could not created (malloc).",
-			tokens, trimmed_line, line);
+		handle_parse_error(game, "List node could not created (malloc).");
 	ft_lstadd_back(&game->map.line_list, new_node);
 }

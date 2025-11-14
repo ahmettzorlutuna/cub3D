@@ -27,7 +27,10 @@ static char	**split_and_check_rgb(t_game *game, char *rgb_token)
 	rgb_colors = ft_split(rgb_token, ',');
 	if (!rgb_colors[0] || !rgb_colors[1]
 		|| !rgb_colors[2] || rgb_colors[3] != NULL)
+	{
+		free_string_array(rgb_colors);
 		exit_safe(game, "RGB colors should be three", 1);
+	}
 	if (!is_digit_string(rgb_colors[0]) || !is_digit_string(rgb_colors[1])
 		|| !is_digit_string(rgb_colors[2]))
 	{

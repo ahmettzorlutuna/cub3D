@@ -59,16 +59,11 @@ void	validate_arguments(int argc, char **argv)
 	int	len;
 
 	if (argc != 2)
-	{
-		ft_putstr_fd("Usage: ./cub3D <map_file.cub>\n", 2);
-		exit(1);
-	}
+		exit_safe(NULL, "Usage: ./cub3D <map_file.cub>\n", 1);
 	len = ft_strlen(argv[1]);
 	if (len < 5 || ft_strncmp(&argv[1][len - 4], ".cub", 5) != 0)
-	{
-		ft_putstr_fd("The map file name must have the .cub extension.\n", 2);
-		exit(1);
-	}
+		exit_safe(NULL,
+			"The map file name must have the .cub extension.\n", 1);
 }
 
 int	is_digit_string(char *str)
@@ -87,4 +82,25 @@ int	is_digit_string(char *str)
 		i++;
 	}
 	return (1);
+}
+
+void	free_parser_state(t_game *game)
+{
+	if (game == NULL)
+		return ;
+	if (game->parser_state.tokens)
+	{
+		free_string_array(game->parser_state.tokens);
+		game->parser_state.tokens = NULL;
+	}
+	if (game->parser_state.trimmed_line)
+	{
+		free(game->parser_state.trimmed_line);
+		game->parser_state.trimmed_line = NULL;
+	}
+	if (game->parser_state.line)
+	{
+		free(game->parser_state.line);
+		game->parser_state.line = NULL;
+	}
 }

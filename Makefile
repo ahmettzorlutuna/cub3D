@@ -40,7 +40,6 @@ SRC = main.c \
 		parser/finalize_map.c \
 		utils/init_game.c \
 		utils/error.c \
-		utils/error2.c \
 		utils/memory.c \
 		parser/flood_fill.c \
 		parser/duplicate_grid.c \

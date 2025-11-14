@@ -58,13 +58,14 @@ static	void	process_identifier(t_game *game, char *line,
 	}
 }
 
-static	int	skip_empty_or_null_line(char **trimmed_line)
+static	int	skip_empty_or_null_line(t_game *game, char **trimmed_line)
 {
 	if (!*trimmed_line)
 		return (1);
 	if ((*trimmed_line)[0] == '\0')
 	{
 		free(*trimmed_line);
+		game->parser_state.trimmed_line = NULL;
 		*trimmed_line = NULL;
 		return (1);
 	}
@@ -76,18 +77,27 @@ static	void	process_map_line(t_game *game, char *line)
 	char	*trimmed_line;
 	char	**tokens;
 
+	tokens = NULL;
 	if (game->map.is_map_started != 1)
 		trimmed_line = ft_strtrim(line, " \t\n");
 	else
 		trimmed_line = ft_strtrim(line, " \t");
-	if (skip_empty_or_null_line(&trimmed_line))
+	game->parser_state.trimmed_line = trimmed_line;
+	if (skip_empty_or_null_line(game, &trimmed_line))
 		return ;
 	tokens = ft_split(trimmed_line, ' ');
+	game->parser_state.tokens = tokens;
 	process_identifier(game, line, tokens, trimmed_line);
 	if (tokens)
+	{
 		free_string_array(tokens);
+		game->parser_state.tokens = NULL;
+	}
 	if (trimmed_line)
+	{
 		free(trimmed_line);
+		game->parser_state.trimmed_line = NULL;
+	}
 }
 
 void	parse_map_lines(char *file_name, t_game *game)
@@ -101,8 +111,10 @@ void	parse_map_lines(char *file_name, t_game *game)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
+		game->parser_state.line = line;
 		process_map_line(game, line);
 		free(line);
+		game->parser_state.line = NULL;
 		line = get_next_line(fd);
 	}
 	close(fd);

@@ -12,6 +12,13 @@
 
 #include "./get_next_line.h"
 
+static char	**get_remaining_storage(void)
+{
+	static char	*remaining;
+
+	return (&remaining);
+}
+
 static char	*extract_line(char **remaining)
 {
 	char	*newline;
@@ -68,32 +75,39 @@ static int	remaining_data(int fd, char **remaining)
 	return (bytes_read);
 }
 
+void	free_gnl_buffer(void)
+{
+	char	**remaining;
+
+	remaining = get_remaining_storage();
+	if (*remaining)
+	{
+		free(*remaining);
+		*remaining = NULL;
+	}
+}
+
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*remaining;
+	char	*line;
+	char	**remaining;
 
+	remaining = get_remaining_storage();
 	if (fd < 0 || BUFFER_SIZE == 0)
 	{
-		if (remaining)
-		{
-			free(remaining);
-			remaining = NULL;
-		}
+		free_gnl_buffer();
 		return (NULL);
 	}
-	if (remaining_data(fd, &remaining) == -1)
+	if (remaining_data(fd, remaining) == -1)
 	{
-		free(remaining);
-		remaining = NULL;
+		free_gnl_buffer();
 		return (NULL);
 	}
-	if (!remaining || !*remaining)
+	if (!*remaining || !**remaining)
 	{
-		free(remaining);
-		remaining = NULL;
+		free_gnl_buffer();
 		return (NULL);
 	}
-	line = extract_line(&remaining);
+	line = extract_line(remaining);
 	return (line);
 }
