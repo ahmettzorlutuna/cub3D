@@ -26,7 +26,7 @@ INVALID_MAPS=(maps/invalid/*.cub)
 
 echo "==> Invalid map tests"
 for m in "${INVALID_MAPS[@]}"; do
-  if "$BIN" "$m" >/dev/null 2>logs/$(basename "$m").err; then
+  if [ "$?" -eq 1 ]; then
     echo "❌ FAIL (should fail): $m"
     ((FAIL++))
   else
