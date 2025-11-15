@@ -12,8 +12,37 @@
 
 #include "../includes/cub3d.h"
 
+static	char	*merge_color_tokens(t_game *game, char **tokens)
+{
+	char	*merged;
+	char	*tmp;
+	int		i;
+
+	if (!tokens[0] || !tokens[1])
+		exit_safe(game, "Invalid color tokens", 1);
+	merged = ft_strdup(tokens[1]);
+	if (!merged)
+		exit_safe(game, "Malloc error during color token merge", 1);
+	free(tokens[1]);
+	i = 2;
+	while (tokens[i])
+	{
+		tmp = ft_strdup(merged);
+		free(merged);
+		merged = ft_strjoin(tmp, tokens[i]);
+		if (!merged)
+			exit_safe(game, "Malloc error during color token merge", 1);
+		free(tmp);
+		free(tokens[i]);
+		tokens[i] = NULL;
+		i++;
+	}
+	return (merged);
+}
+
 static void	check_color_tokens(t_game *game, int *target_color, char **tokens)
 {
+	tokens[1] = merge_color_tokens(game, tokens);
 	if (tokens[1] == NULL || tokens[2] != NULL)
 		exit_safe(game, "Wrong color definition. (Ex: 'F R,G,B')", 1);
 	if (*target_color != -1)

@@ -38,7 +38,8 @@ void	handle_map_line(t_game *game, char *line,
 	(void)tokens;
 	(void)trimmed_line;
 	if (!all_elements_defined(game))
-		handle_parse_error(game, "The map started before all elements were defined.");
+		handle_parse_error(game, "The map "
+			"started before all elements were defined.");
 	line_copy = create_map_line_copy(line);
 	if (!line_copy)
 		handle_parse_error(game, "Map line could not copy (malloc).");

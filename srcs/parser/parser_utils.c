@@ -83,24 +83,3 @@ int	is_digit_string(char *str)
 	}
 	return (1);
 }
-
-void	free_parser_state(t_game *game)
-{
-	if (game == NULL)
-		return ;
-	if (game->parser_state.tokens)
-	{
-		free_string_array(game->parser_state.tokens);
-		game->parser_state.tokens = NULL;
-	}
-	if (game->parser_state.trimmed_line)
-	{
-		free(game->parser_state.trimmed_line);
-		game->parser_state.trimmed_line = NULL;
-	}
-	if (game->parser_state.line)
-	{
-		free(game->parser_state.line);
-		game->parser_state.line = NULL;
-	}
-}

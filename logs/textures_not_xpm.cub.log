@@ -1,0 +1,14 @@
+==501572== Memcheck, a memory error detector
+==501572== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==501572== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==501572== Command: ./cub3d maps/invalid/textures_not_xpm.cub
+==501572== 
+Texture path must ends with .xpm==501572== 
+==501572== HEAP SUMMARY:
+==501572==     in use at exit: 0 bytes in 0 blocks
+==501572==   total heap usage: 105 allocs, 105 frees, 5,223 bytes allocated
+==501572== 
+==501572== All heap blocks were freed -- no leaks are possible
+==501572== 
+==501572== For lists of detected and suppressed errors, rerun with: -s
+==501572== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

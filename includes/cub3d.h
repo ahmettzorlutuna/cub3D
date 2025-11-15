@@ -101,6 +101,7 @@ typedef struct s_input
 typedef struct s_map
 {
 	char	**grid;
+	char	**map_copy;
 	int		width;
 	int		height;
 	char	*north_texture_path;
@@ -133,14 +134,14 @@ typedef struct s_texture
 
 typedef struct s_game
 {
-	t_mlx		mlx;
-	t_player	player;
-	t_map		map;
+	t_mlx			mlx;
+	t_player		player;
+	t_map			map;
 	t_parser_state	parser_state;
-	t_input		input;
-	t_ray		ray;
-	t_hit		hit;
-	t_texture	*texture;
+	t_input			input;
+	t_ray			ray;
+	t_hit			hit;
+	t_texture		*texture;
 }	t_game;
 
 /**
@@ -193,16 +194,15 @@ void	finalize_map_grid(t_game *game, t_map *map);
 void	validate_map_content(t_game *game);
 char	**duplicate_grid(t_game *game, t_map *map);
 void	free_grid(char **grid);
-void	flood_fill(t_game *game, char **map_copy, int height, int x, int y);
+void	flood_fill(t_game *game, char **map_copy, int x, int y);
 void	print_map_copy(char **map_copy, int height);
-void	free_parser_state(t_game *game);
 
 /**
  * ERROR
  */
 void	print_error_and_exit(char *message);
-void	free_textures_and_images(t_game *game);
-void	free_map_paths_and_grid(t_game *game);
+void	free_textures_and_images_and_grid(t_game *game);
+void	free_map_paths(t_game *game);
 void	free_mlx_and_window(t_game *game);
 
 /**

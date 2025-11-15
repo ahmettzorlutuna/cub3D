@@ -59,8 +59,13 @@ jobs:
             cub3D
           if-no-files-found: ignore
           
-      # parser için exit kodu testi (şimdilik test etmiyoruz. kod yetersiz)
+      # 7) Testleri çalıştır
       - name: Run map tests
         run: |
           chmod +x run_map_tests.sh
           ./run_map_tests.sh
+
+      - name: Run leak tests
+        run: |
+          chmod +x leak_tests.sh
+          ./leak_tests.sh

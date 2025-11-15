@@ -12,9 +12,9 @@
 
 #include "../includes/cub3d.h"
 
-void	flood_fill(t_game *game, char **map_copy, int height, int x, int y)
+void	flood_fill(t_game *game, char **map_copy, int x, int y)
 {
-	if (y < 0 || y >= height || map_copy[y] == NULL)
+	if (y < 0 || y >= game->map.height || map_copy[y] == NULL)
 	{
 		free_grid(map_copy);
 		exit_safe(game, "Map open vertically", 1);
@@ -33,8 +33,8 @@ void	flood_fill(t_game *game, char **map_copy, int height, int x, int y)
 	}
 	if (ft_strchr("0NSEW", map_copy[y][x]))
 		map_copy[y][x] = 'F';
-	flood_fill(game, map_copy, height, x, y + 1);
-	flood_fill(game, map_copy, height, x, y - 1);
-	flood_fill(game, map_copy, height, x + 1, y);
-	flood_fill(game, map_copy, height, x - 1, y);
+	flood_fill(game, map_copy, x, y + 1);
+	flood_fill(game, map_copy, x, y - 1);
+	flood_fill(game, map_copy, x + 1, y);
+	flood_fill(game, map_copy, x - 1, y);
 }

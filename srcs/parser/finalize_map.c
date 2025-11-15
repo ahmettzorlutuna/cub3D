@@ -50,7 +50,7 @@ void	validate_map_content(t_game *game)
 	if (player_count != 1)
 		exit_safe(game, "There should be 1 player on the map.", 1);
 	map_copy = duplicate_grid(game, &game->map);
-	flood_fill(game, map_copy, game->map.height,
+	flood_fill(game, map_copy,
 		(int)game->player.pos.x, (int)game->player.pos.y);
 	print_map_copy(map_copy, game->map.height);
 	free_grid(map_copy);

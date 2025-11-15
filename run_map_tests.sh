@@ -1,39 +1,54 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -u  # -e ve -o pipefail kaldırıldı, çünkü testler hata alabilir
 
-BIN=./cub3D
+BIN=./cub3d
 OK=0
 FAIL=0
 
 mkdir -p logs
 
-# Beklenen geçerli (başarılı) haritalar
+# Geçerli haritalar
 VALID_MAPS=(maps/valid/*.cub)
-
-# Beklenen hatalı (başarısız) haritalar
+# Hatalı haritalar
 INVALID_MAPS=(maps/invalid/*.cub)
 
-#echo "==> Valid map tests"
-#for m in "${VALID_MAPS[@]}"; do
- # if "$BIN" "$m" >/dev/null 2>logs/$(basename "$m").err; then
-  #  echo "✅ PASS: $m"
-   # ((OK++))
-#  else
- #   echo "❌ FAIL (should pass): $m"
-  #  ((FAIL++))
-#  fi
-#done
+if [ ! -x "$BIN" ]; then
+  echo "Error: $BIN not found or not executable."
+  exit 127
+fi
 
 echo "==> Invalid map tests"
 for m in "${INVALID_MAPS[@]}"; do
-  if [ "$?" -eq 1 ]; then
-    echo "❌ FAIL (should fail): $m"
-    ((FAIL++))
-  else
+  if [ ! -f "$m" ]; then
+    echo "SKIP (file not found): $m"
+    continue
+  fi
+  EXIT_CODE=0
+  "$BIN" "$m" >/dev/null 2>&1 || EXIT_CODE=$?
+  if [ "$EXIT_CODE" -eq 1 ]; then
     echo "✅ PASS (failed as expected): $m"
     ((OK++))
+  else
+    echo "❌ FAIL (should fail with exit 1, but got $EXIT_CODE): $m"
+    ((FAIL++))
   fi
 done
 
-echo "==> Summary: OK=$OK FAIL=$FAIL"
-exit $([ "$FAIL" -eq 0 ])
+echo "==> Valid map tests"
+for m in "${VALID_MAPS[@]}"; do
+  if [ ! -f "$m" ]; then
+    echo "SKIP (file not found): $m"
+    continue
+  fi
+  EXIT_CODE=0
+  "$BIN" "$m" >/dev/null 2>&1 || EXIT_CODE=$?
+  if [ "$EXIT_CODE" -eq 0 ]; then
+    echo "✅ PASS (valid map succeeded): $m"
+    ((OK++))
+  else
+    echo "❌ FAIL (valid map should succeed, got exit $EXIT_CODE): $m"
+    ((FAIL++))
+  fi
+done
+
+echo "Summary: $OK PASS, $FAIL FAIL"

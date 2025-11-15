@@ -30,16 +30,21 @@ static void	destroy_texture_images(t_game *game)
 	}
 }
 
-void	free_textures_and_images(t_game *game)
+void	free_textures_and_images_and_grid(t_game *game)
 {
 	if (!game || !game->texture)
 		return ;
+	if (game->map.grid)
+	{
+		free_grid(game->map.grid);
+		game->map.grid = NULL;
+	}
 	destroy_texture_images(game);
 	free(game->texture);
 	game->texture = NULL;
 }
 
-void	free_map_paths_and_grid(t_game *game)
+void	free_map_paths(t_game *game)
 {
 	if (!game)
 		return ;
@@ -62,11 +67,6 @@ void	free_map_paths_and_grid(t_game *game)
 	{
 		free(game->map.west_texture_path);
 		game->map.west_texture_path = NULL;
-	}
-	if (game->map.grid)
-	{
-		free_grid(game->map.grid);
-		game->map.grid = NULL;
 	}
 }
 
@@ -96,22 +96,7 @@ void	cleanup(t_game *game)
 {
 	if (!game)
 		return ;
-	free_textures_and_images(game);
-	free_map_paths_and_grid(game);
+	free_textures_and_images_and_grid(game);
+	free_map_paths(game);
 	free_mlx_and_window(game);
-}
-
-void	free_string_array(char **array)
-{
-	int	i;
-
-	if (array == NULL)
-		return ;
-	i = 0;
-	while (array[i] != NULL)
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
 }
