@@ -31,6 +31,11 @@ static	void	free_parser_state(t_game *game)
 {
 	if (game == NULL)
 		return ;
+	if (game->parser_state.rgb_colors)
+	{
+		free_string_array(game->parser_state.rgb_colors);
+		game->parser_state.rgb_colors = NULL;
+	}
 	if (game->parser_state.tokens)
 	{
 		free_string_array(game->parser_state.tokens);
@@ -72,5 +77,6 @@ void	print_error_and_exit(char *message)
 {
 	if (message != NULL && *message != '\0')
 		ft_putstr_fd(message, 2);
+	ft_putstr_fd("\n", 2);
 	exit(1);
 }

@@ -24,9 +24,9 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define MOVE_SPEED 0.08
-# define ROTATE_SPEED 0.06
-# define PLAYER_MARGIN 0.20
+# define MOVE_SPEED 0.07
+# define ROTATE_SPEED 0.05
+# define PLAYER_MARGIN 0.125
 # define FOV 0.66
 # define WIN_W 1024
 # define WIN_H 768
@@ -119,6 +119,7 @@ typedef struct s_parser_state
 	char	*line;
 	char	*trimmed_line;
 	char	**tokens;
+	char	**rgb_colors;
 }	t_parser_state;
 
 typedef struct s_texture
@@ -182,20 +183,24 @@ void	ray_project(t_game *game);
 /**
  * PARSER
  */
-void	validate_arguments(int argc, char **argv);
+void	validate_arguments(t_game *game, int argc, char **argv);
 void	parse_map_lines(char *file_name, t_game *game);
 void	parse_color(t_game *game, int *target_color, char **tokens);
 int		is_digit_string(char *str);
 void	free_string_array(char **array);
 char	*create_map_line_copy(char *line);
-void	handle_map_line(t_game *game, char *line, char **tokens,
-			char *trimmed_line);
+void	handle_map_line(t_game *game, char *line);
 void	finalize_map_grid(t_game *game, t_map *map);
 void	validate_map_content(t_game *game);
 char	**duplicate_grid(t_game *game, t_map *map);
 void	free_grid(char **grid);
 void	flood_fill(t_game *game, char **map_copy, int x, int y);
 void	print_map_copy(char **map_copy, int height);
+void	check_valid_color(t_game *game, char *color_token);
+void	check_color_tokens(t_game *game, int *target_color, char **tokens);
+char	**split_and_check_rgb(t_game *game, char *rgb_token);
+void	check_rgb_range(t_game *game, int r, int g, int b);
+char	*merge_color_tokens(t_game *game, char **tokens);
 
 /**
  * ERROR

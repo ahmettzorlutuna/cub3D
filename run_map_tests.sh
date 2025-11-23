@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
-set -u  # -e ve -o pipefail kaldırıldı, çünkü testler hata alabilir
+set -u
 
-BIN=./cub3d
+# Binary ismini belirle
+if [ -f "./cub3D" ]; then
+    BIN="./cub3D"
+else
+    BIN="./cub3d"
+fi
+
 OK=0
 FAIL=0
 
 mkdir -p logs
 
-# Geçerli haritalar
 VALID_MAPS=(maps/valid/*.cub)
-# Hatalı haritalar
 INVALID_MAPS=(maps/invalid/*.cub)
 
 if [ ! -x "$BIN" ]; then
@@ -17,38 +21,61 @@ if [ ! -x "$BIN" ]; then
   exit 127
 fi
 
-echo "==> Invalid map tests"
+echo "========================================"
+echo "==> Invalid Map Tests (Should Exit 1)"
+echo "========================================"
 for m in "${INVALID_MAPS[@]}"; do
-  if [ ! -f "$m" ]; then
-    echo "SKIP (file not found): $m"
-    continue
-  fi
-  EXIT_CODE=0
-  "$BIN" "$m" >/dev/null 2>&1 || EXIT_CODE=$?
+  if [ ! -f "$m" ]; then continue; fi
+  
+  # Invalid map'ler hemen kapanmalı, user input gerekmez.
+  "$BIN" "$m" >/dev/null 2>&1
+  EXIT_CODE=$?
+  
   if [ "$EXIT_CODE" -eq 1 ]; then
-    echo "✅ PASS (failed as expected): $m"
+    echo "✅ PASS: $m"
     ((OK++))
   else
-    echo "❌ FAIL (should fail with exit 1, but got $EXIT_CODE): $m"
+    echo "❌ FAIL (Got exit $EXIT_CODE, expected 1): $m"
     ((FAIL++))
   fi
 done
 
-echo "==> Valid map tests"
+echo ""
+echo "========================================"
+echo "==> Valid Map Tests (Should Exit 0)"
+echo "========================================"
 for m in "${VALID_MAPS[@]}"; do
-  if [ ! -f "$m" ]; then
-    echo "SKIP (file not found): $m"
-    continue
-  fi
-  EXIT_CODE=0
-  "$BIN" "$m" >/dev/null 2>&1 || EXIT_CODE=$?
+  if [ ! -f "$m" ]; then continue; fi
+
+  # 1. Programı arka planda başlat
+  "$BIN" "$m" >/dev/null 2>&1 &
+  PID=$!
+
+  # 2. Bekle (CI ortamı yavaş olabilir, 3 saniye güvenlidir)
+  sleep 3
+
+  # 3. Sanal tuşa bas (ESC)
+  # Bu komut o anki X11 display'ine tuş gönderir.
+  xdotool key Escape
+
+  # 4. Programın kapanmasını bekle
+  wait $PID
+  EXIT_CODE=$?
+
   if [ "$EXIT_CODE" -eq 0 ]; then
-    echo "✅ PASS (valid map succeeded): $m"
+    echo "✅ PASS: $m"
     ((OK++))
   else
-    echo "❌ FAIL (valid map should succeed, got exit $EXIT_CODE): $m"
+    echo "❌ FAIL (Got exit $EXIT_CODE, expected 0): $m"
     ((FAIL++))
   fi
 done
 
+echo "----------------------------------------"
 echo "Summary: $OK PASS, $FAIL FAIL"
+echo "----------------------------------------"
+
+if [ "$FAIL" -gt 0 ]; then
+    exit 1
+fi
+exit 0

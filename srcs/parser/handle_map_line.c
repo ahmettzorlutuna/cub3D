@@ -24,27 +24,19 @@ static	int	all_elements_defined(t_game *game)
 	return (1);
 }
 
-static	void	handle_parse_error(t_game *game, char *message)
-{
-	exit_safe(game, message, 1);
-}
-
-void	handle_map_line(t_game *game, char *line,
-		char **tokens, char *trimmed_line)
+void	handle_map_line(t_game *game, char *line)
 {
 	char	*line_copy;
 	t_list	*new_node;
 
-	(void)tokens;
-	(void)trimmed_line;
 	if (!all_elements_defined(game))
-		handle_parse_error(game, "The map "
-			"started before all elements were defined.");
+		exit_safe(game,
+			"Map data found before all elements were defined", 1);
 	line_copy = create_map_line_copy(line);
 	if (!line_copy)
-		handle_parse_error(game, "Map line could not copy (malloc).");
+		exit_safe(game, "Map line could not copy (malloc).", 1);
 	new_node = ft_lstnew(line_copy);
 	if (!new_node)
-		handle_parse_error(game, "List node could not created (malloc).");
+		exit_safe(game, "List node could not created (malloc).", 1);
 	ft_lstadd_back(&game->map.line_list, new_node);
 }

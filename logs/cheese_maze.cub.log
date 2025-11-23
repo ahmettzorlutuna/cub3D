@@ -1,8 +1,10 @@
-==501596== Memcheck, a memory error detector
-==501596== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==501596== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==501596== Command: ./cub3d maps/valid/cheese_maze.cub
-==501596== 
+==2638807== Memcheck, a memory error detector
+==2638807== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2638807== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==2638807== Command: ./cub3d maps/valid/cheese_maze.cub
+==2638807== 
+Merged color token: '164,169,20 '
+Merged color token: '153,204,255 '
 111111111111111111111
 1F1FFFFF1FFFFFFFFFFF1
 1F1F1F1F1F1111111FFF1
@@ -25,12 +27,12 @@
 1F1FFFFF1FFFFFFFFFFF1
 111111111111111111111
 
-==501596== 
-==501596== HEAP SUMMARY:
-==501596==     in use at exit: 0 bytes in 0 blocks
-==501596==   total heap usage: 1,822 allocs, 1,822 frees, 945,248 bytes allocated
-==501596== 
-==501596== All heap blocks were freed -- no leaks are possible
-==501596== 
-==501596== For lists of detected and suppressed errors, rerun with: -s
-==501596== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+==2638807== 
+==2638807== HEAP SUMMARY:
+==2638807==     in use at exit: 0 bytes in 0 blocks
+==2638807==   total heap usage: 1,745 allocs, 1,745 frees, 943,289 bytes allocated
+==2638807== 
+==2638807== All heap blocks were freed -- no leaks are possible
+==2638807== 
+==2638807== For lists of detected and suppressed errors, rerun with: -s
+==2638807== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)

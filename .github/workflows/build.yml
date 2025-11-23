@@ -15,7 +15,13 @@ jobs:
         with:
           submodules: recursive
 
-      # 2) (Önemli) MLX klasörünü yoksa indir
+      # 2) Gerekli Paketleri Yükle (GUI, Test ve Valgrind araçları)
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xdotool xvfb libx11-dev libxext-dev libbsd-dev valgrind
+
+      # 3) MLX klasörünü yoksa indir
       - name: Ensure MiniLibX is present
         run: |
           mkdir -p lib
@@ -23,32 +29,33 @@ jobs:
             git clone --depth=1 https://github.com/42Paris/minilibx-linux.git lib/minilibx-linux
           fi
 
-      # 3) Buildx
+      # 4) Buildx Kurulumu
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # 4) Docker imajını build et (Dockerfile’ındaki paketler yeterli olmalı)
+      # 5) Docker imajını build et
       - name: Build Docker image
         run: docker build -t cub3d-test .
 
-      # 5) Container içinde make ve binary kontrolü
+      # 6) Container içinde make ve binary kontrolü
+      # Binary'nin host makineye (runner'a) aktarılması için volume mount (-v) kullanıyoruz.
       - name: Verify cub3D binary
         run: |
           docker run --rm -v "$GITHUB_WORKSPACE":/app cub3d-test bash -lc '
             set -e
             cd /app
             make all
-            if   [ -f cub3d ]; then BIN=cub3d
-            elif [ -f cub3D ]; then BIN=cub3D
+            if   [ -f cub3d ]; then echo "Binary found: cub3d";
+            elif [ -f cub3D ]; then echo "Binary found: cub3D";
             else
               echo "❌ cub3D binary not found in /app"
               ls -la
               exit 1
             fi
-            echo "✅ $BIN built successfully"
+            chmod +x cub3*
           '
 
-      # 6) (opsiyonel) artefact yükle
+      # 7) Artefact yükle (Opsiyonel ama önerilir)
       - name: Upload cub3D artifact
         if: success()
         uses: actions/upload-artifact@v4
@@ -59,13 +66,17 @@ jobs:
             cub3D
           if-no-files-found: ignore
           
-      # 7) Testleri çalıştır
+      # 8) Normal Map Testlerini Çalıştır (Sanal Ekran İle)
       - name: Run map tests
         run: |
           chmod +x run_map_tests.sh
-          ./run_map_tests.sh
+          # xvfb-run: Sanal ekran oluşturur.
+          # -a: Otomatik ekran numarası seçer.
+          # -s: Ekran çözünürlüğü ayarları.
+          xvfb-run -a -s "-screen 0 1024x768x24" ./run_map_tests.sh
 
+      # 9) Leak Testlerini Çalıştır (Sanal Ekran İle)
       - name: Run leak tests
         run: |
           chmod +x leak_tests.sh
-          ./leak_tests.sh
+          xvfb-run -a -s "-screen 0 1024x768x24" ./leak_tests.sh

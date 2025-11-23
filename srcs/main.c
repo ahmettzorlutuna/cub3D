@@ -16,7 +16,8 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	validate_arguments(argc, argv);
+	ft_memset(&game, 0, sizeof(t_game));
+	validate_arguments(&game, argc, argv);
 	init_game(&game);
 	parse_map_lines(argv[1], &game);
 	finalize_map_grid(&game, &game.map);

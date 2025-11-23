@@ -37,7 +37,7 @@ static void	parse_texture(t_game *game, char **target_path, char **tokens)
 }
 
 static	void	process_identifier(t_game *game, char *line,
-		char **tokens, char *trimmed_line)
+		char **tokens)
 {
 	if (ft_strncmp(tokens[0], "NO", 3) == 0)
 		parse_texture(game, &game->map.north_texture_path, tokens);
@@ -54,7 +54,7 @@ static	void	process_identifier(t_game *game, char *line,
 	else
 	{
 		game->map.is_map_started = 1;
-		handle_map_line(game, line, tokens, trimmed_line);
+		handle_map_line(game, line);
 	}
 }
 
@@ -87,7 +87,7 @@ static	void	process_map_line(t_game *game, char *line)
 		return ;
 	tokens = ft_split(trimmed_line, ' ');
 	game->parser_state.tokens = tokens;
-	process_identifier(game, line, tokens, trimmed_line);
+	process_identifier(game, line, tokens);
 	if (tokens)
 	{
 		free_string_array(tokens);

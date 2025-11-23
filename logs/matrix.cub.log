@@ -1,8 +1,10 @@
-==501705== Memcheck, a memory error detector
-==501705== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==501705== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==501705== Command: ./cub3d maps/valid/matrix.cub
-==501705== 
+==2638876== Memcheck, a memory error detector
+==2638876== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2638876== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==2638876== Command: ./cub3d maps/valid/matrix.cub
+==2638876== 
+Merged color token: '0,0,0 '
+Merged color token: '0,0,0 '
 111111111111111111111
 1F1FFFFF1FFFFFFFFFFF1
 1F1F1F1F1F1111111FFF1
@@ -25,12 +27,12 @@
 1F1FFFFF1FFFFFFFFFFF1
 111111111111111111111
 
-==501705== 
-==501705== HEAP SUMMARY:
-==501705==     in use at exit: 0 bytes in 0 blocks
-==501705==   total heap usage: 1,723 allocs, 1,723 frees, 943,218 bytes allocated
-==501705== 
-==501705== All heap blocks were freed -- no leaks are possible
-==501705== 
-==501705== For lists of detected and suppressed errors, rerun with: -s
-==501705== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+==2638876== 
+==2638876== HEAP SUMMARY:
+==2638876==     in use at exit: 0 bytes in 0 blocks
+==2638876==   total heap usage: 1,723 allocs, 1,723 frees, 943,184 bytes allocated
+==2638876== 
+==2638876== All heap blocks were freed -- no leaks are possible
+==2638876== 
+==2638876== For lists of detected and suppressed errors, rerun with: -s
+==2638876== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)

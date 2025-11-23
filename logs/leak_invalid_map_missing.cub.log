@@ -1,0 +1,17 @@
+==2640909== Memcheck, a memory error detector
+==2640909== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2640909== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==2640909== Command: ./cub3d maps/invalid/map_missing.cub
+==2640909== 
+The map is empty
+Merged color token: '20,20,20 '
+Merged color token: '200,200,200 '
+==2640909== 
+==2640909== HEAP SUMMARY:
+==2640909==     in use at exit: 0 bytes in 0 blocks
+==2640909==   total heap usage: 342 allocs, 342 frees, 14,786 bytes allocated
+==2640909== 
+==2640909== All heap blocks were freed -- no leaks are possible
+==2640909== 
+==2640909== For lists of detected and suppressed errors, rerun with: -s
+==2640909== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
