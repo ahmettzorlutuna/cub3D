@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   duplicate_grid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekibar <ekibar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 19:23:32 by azorlutu          #+#    #+#             */
 /*   Updated: 2025/10/28 20:33:40 by ekibar           ###   ########.fr       */

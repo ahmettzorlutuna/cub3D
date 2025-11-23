@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekibar <ekibar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 23:21:53 by azorlutu          #+#    #+#             */
 /*   Updated: 2025/11/10 21:21:18 by ekibar           ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azorlutu <azorlutu@student.42istanbul      +#+  +:+       +#+        */
+/*   By: azorlutu <azorlutu@student.42istanbul.com.tr>   +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 19:26:51 by azorlutu          #+#    #+#             */
 /*   Updated: 2025/10/25 19:26:52 by azorlutu         ###   ########.fr       */

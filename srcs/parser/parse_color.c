@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azorlutu <azorlutu@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: azorlutu <azorlutu@student.42istanbul.com.tr>   +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 22:36:02 by azorlutu          #+#    #+#             */
 /*   Updated: 2025/10/19 22:36:03 by azorlutu         ###   ########.tr       */
@@ -28,6 +28,8 @@ static int	get_prefix_and_sign(const char *str, int *sign)
 			*sign = 1;
 		i++;
 	}
+	while (str[i] == '0')
+		i++;
 	return (i);
 }
 

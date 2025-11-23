@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azorlutu <azorlutu@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: azorlutu <azorlutu@student.42istanbul.com.tr>   +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 23:59:17 by azorlutu          #+#    #+#             */
 /*   Updated: 2024/11/28 23:59:18 by azorlutu         ###   ########.tr       */

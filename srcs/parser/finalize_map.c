@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   finalize_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azorlutu <azorlutu@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: azorlutu <azorlutu@student.42istanbul.com.tr>   +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 21:10:36 by azorlutu          #+#    #+#             */
 /*   Updated: 2025/10/23 21:10:36 by azorlutu         ###   ########.tr       */
@@ -52,7 +52,6 @@ void	validate_map_content(t_game *game)
 	map_copy = duplicate_grid(game, &game->map);
 	flood_fill(game, map_copy,
 		(int)game->player.pos.x, (int)game->player.pos.y);
-	print_map_copy(map_copy, game->map.height);
 	free_grid(map_copy);
 }
 

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekibar <ekibar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 22:28:52 by azorlutu          #+#    #+#             */
 /*   Updated: 2025/11/10 21:23:53 by ekibar           ###   ########.fr       */

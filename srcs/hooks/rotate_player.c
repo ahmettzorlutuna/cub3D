@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekibar <ekibar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 19:11:06 by ekibar            #+#    #+#             */
 /*   Updated: 2025/10/28 16:09:44 by ekibar           ###   ########.fr       */
@@ -28,12 +28,8 @@ static void	rotate_player(t_game *game, double rotate_angle)
 
 	rot_cos = cos(rotate_angle);
 	rot_sin = sin(rotate_angle);
-	printf("önce : dir[%f][%f] - plane[%f][%f]\n", game->player.dir.x,
-		game->player.dir.y, game->player.plane.x, game->player.plane.y);
 	rotate_vector(&game->player.dir, rot_cos, rot_sin);
 	rotate_vector(&game->player.plane, rot_cos, rot_sin);
-	printf("sonra : dir[%f][%f] - plane[%f][%f]\n", game->player.dir.x,
-		game->player.dir.y, game->player.plane.x, game->player.plane.y);
 }
 
 void	turn_left(t_game *game)

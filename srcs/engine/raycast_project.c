@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_project.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekibar <ekibar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ekibar <ekibar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 19:11:06 by ekibar            #+#    #+#             */
 /*   Updated: 2025/11/10 13:57:28 by ekibar           ###   ########.fr       */

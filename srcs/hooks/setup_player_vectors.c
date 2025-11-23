@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   setup_player_vectors.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azorlutu <azorlutu@student.42istanbul      +#+  +:+       +#+        */
+/*   By: azorlutu <azorlutu@student.42istanbul.com.tr>   +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 20:18:25 by azorlutu          #+#    #+#             */
 /*   Updated: 2025/11/12 20:18:25 by azorlutu         ###   ########.fr       */

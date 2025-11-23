@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parse_color_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azorlutu <azorlutu@student.42istanbul      +#+  +:+       +#+        */
+/*   By: azorlutu <azorlutu@student.42istanbul.com.tr>   +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:34:11 by azorlutu          #+#    #+#             */
 /*   Updated: 2025/11/22 15:34:12 by azorlutu         ###   ########.fr       */
@@ -44,7 +44,6 @@ void	check_color_tokens(t_game *game, int *target_color, char **tokens)
 	tokens[1] = merge_color_tokens(game, tokens);
 	if (!tokens[1])
 		exit_safe(game, "Malloc error during color token merge", 1);
-	printf("Merged color token: '%s'\n", tokens[1]);
 	check_valid_color(game, tokens[1]);
 	if (tokens[1] == NULL || tokens[2] != NULL)
 		exit_safe(game, "Wrong color definition. (Ex: 'F R,G,B')", 1);

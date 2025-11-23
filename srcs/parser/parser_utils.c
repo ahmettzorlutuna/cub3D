@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azorlutu <azorlutu@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: azorlutu <azorlutu@student.42istanbul.com.tr>   +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 22:36:02 by azorlutu          #+#    #+#             */
 /*   Updated: 2025/10/19 22:36:03 by azorlutu         ###   ########.tr       */
@@ -57,21 +57,14 @@ char	*create_map_line_copy(char *line)
 void	validate_arguments(t_game *game, int argc, char **argv)
 {
 	int		len;
-	char	*arg;
 
 	len = ft_strlen(argv[1]);
-	arg = ft_strrchr(argv[1], '/');
 	if (argc != 2)
 		exit_safe(game, "Usage: ./cub3D <map_file.cub>\n", 1);
-	if (arg[1] == '.')
-	{
-		if (ft_strlen(++arg) == 4)
-			exit_safe(game, "The map file need name.\n", 1);
-		exit_safe(game, "File cannot be secret.\n", 1);
-	}
 	if (len < 5 || ft_strncmp(&argv[1][len - 4], ".cub", 5) != 0)
 		exit_safe(game,
 			"The map file name must have the .cub extension.\n", 1);
+	check_hidden_file(game, argv[1], "The map file cannot be hidden");
 }
 
 int	is_digit_string(char *str)

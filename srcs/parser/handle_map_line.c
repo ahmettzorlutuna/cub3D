@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   handle_map_line.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azorlutu <azorlutu@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: azorlutu <azorlutu@student.42istanbul.com.tr>   +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 20:48:52 by azorlutu          #+#    #+#             */
 /*   Updated: 2025/10/23 20:48:53 by azorlutu         ###   ########.tr       */

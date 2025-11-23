@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azorlutu <azorlutu@student.42istanbul      +#+  +:+       +#+        */
+/*   By: azorlutu <azorlutu@student.42istanbul.com.tr>   +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 21:39:55 by azorlutu          #+#    #+#             */
 /*   Updated: 2025/11/12 21:39:56 by azorlutu         ###   ########.fr       */
@@ -186,6 +186,7 @@ void	ray_project(t_game *game);
 void	validate_arguments(t_game *game, int argc, char **argv);
 void	parse_map_lines(char *file_name, t_game *game);
 void	parse_color(t_game *game, int *target_color, char **tokens);
+void	check_hidden_file(t_game *game, char *path, char *error_msg);
 int		is_digit_string(char *str);
 void	free_string_array(char **array);
 char	*create_map_line_copy(char *line);
@@ -201,6 +202,7 @@ void	check_color_tokens(t_game *game, int *target_color, char **tokens);
 char	**split_and_check_rgb(t_game *game, char *rgb_token);
 void	check_rgb_range(t_game *game, int r, int g, int b);
 char	*merge_color_tokens(t_game *game, char **tokens);
+void	parse_texture(t_game *game, char **target_path, char **tokens);
 
 /**
  * ERROR
