@@ -148,6 +148,7 @@ typedef struct s_game
 /**
  * HOOKS
  */
+
 void	go_forward(t_game *game);
 void	go_down(t_game *game);
 void	go_right(t_game *game);
@@ -165,6 +166,7 @@ void	set_player_east(t_game *game);
 /**
  * ENGINE
  */
+
 void	load_textures(t_game *game, char *path, int i);
 void	create_window(t_game *game);
 void	init_game(t_game *game);
@@ -183,6 +185,7 @@ void	ray_project(t_game *game);
 /**
  * PARSER
  */
+
 void	validate_arguments(t_game *game, int argc, char **argv);
 void	parse_map_lines(char *file_name, t_game *game);
 void	parse_color(t_game *game, int *target_color, char **tokens);
@@ -207,6 +210,7 @@ void	parse_texture(t_game *game, char **target_path, char **tokens);
 /**
  * ERROR
  */
+
 void	print_error_and_exit(char *message);
 void	free_textures_and_images_and_grid(t_game *game);
 void	free_map_paths(t_game *game);
@@ -215,6 +219,7 @@ void	free_mlx_and_window(t_game *game);
 /**
  * CLEANUP
  */
+
 void	cleanup(t_game *game);
 
 #endif

@@ -54,7 +54,6 @@ int	key_release_handler(int keycode, t_game *game)
 	return (0);
 }
 
-// alınan input durumuna göre oyuncunun pozisyonunu ve yönünü günceller.
 void	apply_input(t_game *game)
 {
 	if (game->input.w)
@@ -71,8 +70,6 @@ void	apply_input(t_game *game)
 		turn_right(game);
 }
 
-// klavye ve pencere olaylarını işlemek için 
-// MLX kütüphanesinin hook fonksiyonlarını ayarlar.
 void	hooks_handler(t_game *game)
 {
 	mlx_hook(game->mlx.win_ptr, 2, 1L << 0, key_press_handler, game);
