@@ -14,13 +14,23 @@
 
 static void	put_pixel(t_game *game, int x, int y, int color)
 {
-	char	*pixel_addr;
+	char			*pixel_addr;
+	unsigned int	c;
 
 	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
 		return ;
 	pixel_addr = game->mlx.addr + (y * game->mlx.line_len + x * (game->mlx.bpp
 				/ 8));
-	*(int *)pixel_addr = color;
+	if (game->mlx.endian == 0)
+		*(int *)pixel_addr = color;
+	else
+	{
+		c = ((color & 0xFF) << 24)
+			| ((color & 0xFF00) << 8)
+			| ((color & 0xFF0000) >> 8)
+			| ((color >> 24) & 0xFF);
+		*(int *)pixel_addr = c;
+	}
 }
 
 void	draw_pixel(t_game *game, int x, int y)

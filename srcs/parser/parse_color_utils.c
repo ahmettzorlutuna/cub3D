@@ -31,7 +31,7 @@ void	check_valid_color(t_game *game, char *color_token)
 			if (ft_isdigit(color_token[i + 1])
 				&& ft_isdigit(color_token[i - 1]))
 				exit_safe(game, "Spaces are not "
-					"allowed around commas in color definition", 1);
+					"allowed around numbers in color definition", 1);
 		}
 		i++;
 	}

@@ -158,10 +158,6 @@ void	turn_left(t_game *game);
 void	apply_input(t_game *game);
 int		is_walkable(t_map *map, int row, int col);
 void	setup_player_vectors(t_game *game);
-void	set_player_north(t_game *game);
-void	set_player_south(t_game *game);
-void	set_player_west(t_game *game);
-void	set_player_east(t_game *game);
 
 /**
  * ENGINE

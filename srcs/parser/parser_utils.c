@@ -58,12 +58,14 @@ void	validate_arguments(t_game *game, int argc, char **argv)
 {
 	int		len;
 
-	len = ft_strlen(argv[1]);
+	if (!game || !argv)
+		return ;
 	if (argc != 2)
-		exit_safe(game, "Usage: ./cub3D <map_file.cub>\n", 1);
+		exit_safe(game, "Usage: ./cub3D <map_file.cub>", 1);
+	len = ft_strlen(argv[1]);
 	if (len < 5 || ft_strncmp(&argv[1][len - 4], ".cub", 5) != 0)
 		exit_safe(game,
-			"The map file name must have the .cub extension.\n", 1);
+			"The map file name must have the .cub extension.", 1);
 	check_hidden_file(game, argv[1], "The map file cannot be hidden");
 }
 
