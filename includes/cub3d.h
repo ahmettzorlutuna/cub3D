@@ -170,13 +170,13 @@ void	exit_safe(t_game *game, char *str, int exit_no);
 int		exit_window(t_game *game);
 void	hooks_handler(t_game *game);
 int		game_loop(void *game);
-void	draw_pixel(t_game *game, int x, int y);
 void	draw_world(t_game *game);
 void	ray_run_dda(t_game *game);
 void	ray_step_init(t_game *game);
 void	ray_init(t_game *game, int x);
 void	ray_pick_color(t_game *game, int y);
 void	ray_project(t_game *game);
+void	put_pixel(t_game *game, int x, int y, int color);
 
 /**
  * PARSER

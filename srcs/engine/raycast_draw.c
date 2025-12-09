@@ -12,24 +12,39 @@
 
 #include "../includes/cub3d.h"
 
+static	void	draw_column(t_game *game, int x)
+{
+	int	y;
+	int	draw_start;
+	int	draw_end;
+
+	ray_init(game, x);
+	ray_step_init(game);
+	ray_run_dda(game);
+	ray_project(game);
+	draw_start = game->hit.draw_start;
+	draw_end = game->hit.draw_end;
+	if (draw_start < 0)
+		draw_start = 0;
+	if (draw_end >= WIN_H)
+		draw_end = WIN_H - 1;
+	y = draw_start;
+	while (y < draw_end)
+	{
+		ray_pick_color(game, y);
+		put_pixel(game, x, y, game->hit.color);
+		y++;
+	}
+}
+
 void	draw_world(t_game *game)
 {
 	int	x;
-	int	y;
 
 	x = 0;
 	while (x < WIN_W)
 	{
-		ray_init(game, x);
-		ray_step_init(game);
-		ray_run_dda(game);
-		ray_project(game);
-		y = game->hit.draw_start;
-		while (y < game->hit.draw_end)
-		{
-			draw_pixel(game, x, y);
-			y++;
-		}
+		draw_column(game, x);
 		x++;
 	}
 }
