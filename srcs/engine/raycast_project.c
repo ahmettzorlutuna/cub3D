@@ -26,7 +26,11 @@ void	ray_project(t_game *game)
 		game->hit.perp_wall_dist = 0.0001;
 	game->hit.line_h = (int)((double)WIN_H / game->hit.perp_wall_dist);
 	game->hit.draw_start = -game->hit.line_h / 2 + WIN_H / 2;
+	if (game->hit.draw_start < 0)
+		game->hit.draw_start = 0;
 	game->hit.draw_end = game->hit.line_h / 2 + WIN_H / 2;
+	if (game->hit.draw_end >= WIN_H)
+		game->hit.draw_end = WIN_H - 1;
 }
 
 static	int	get_texture_color(t_texture *texture, int tex_x, int tex_y)

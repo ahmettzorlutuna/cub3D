@@ -12,13 +12,11 @@
 
 #include "../includes/cub3d.h"
 
-static void	put_pixel(t_game *game, int x, int y, int color)
+void	put_pixel(t_game *game, int x, int y, int color)
 {
 	char			*pixel_addr;
 	unsigned int	c;
 
-	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
-		return ;
 	pixel_addr = game->mlx.addr + (y * game->mlx.line_len + x * (game->mlx.bpp
 				/ 8));
 	if (game->mlx.endian == 0)
@@ -31,18 +29,6 @@ static void	put_pixel(t_game *game, int x, int y, int color)
 			| ((color >> 24) & 0xFF);
 		*(int *)pixel_addr = c;
 	}
-}
-
-void	draw_pixel(t_game *game, int x, int y)
-{
-	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
-		return ;
-	if (game->hit.draw_start < 0)
-		game->hit.draw_start = 0;
-	if (game->hit.draw_end >= WIN_H)
-		game->hit.draw_end = WIN_H - 1;
-	ray_pick_color(game, y);
-	put_pixel(game, x, y, game->hit.color);
 }
 
 static void	draw_background(t_game *game)
