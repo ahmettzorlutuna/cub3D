@@ -27,7 +27,8 @@ void	draw_world(t_game *game)
 		y = game->hit.draw_start;
 		while (y < game->hit.draw_end)
 		{
-			draw_pixel(game, x, y);
+			ray_pick_color(game, y);
+			put_pixel(game, x, y, game->hit.color);
 			y++;
 		}
 		x++;

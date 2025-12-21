@@ -177,6 +177,7 @@ void	ray_step_init(t_game *game);
 void	ray_init(t_game *game, int x);
 void	ray_pick_color(t_game *game, int y);
 void	ray_project(t_game *game);
+void	put_pixel(t_game *game, int x, int y, int color);
 
 /**
  * PARSER
